@@ -1,0 +1,68 @@
+// Media queries
+// Uses the breakpoints defined in vars/_bootstrap.scss & vars/_custom.scss
+
+// Respond below
+@mixin respond-below($breakpoint-width, $breakpoint-height: 0) {
+    @if $breakpoint-width != 0 {
+        $breakpoint-width-value: map-get($grid-breakpoints, $breakpoint-width) !global;
+
+        @if $breakpoint-width-value == null {
+            @error "Width breakpoint '#{$breakpoint-width}' is invalid";
+        }
+    }
+
+    @if $breakpoint-height != 0 {
+        $breakpoint-height-value: map-get($breakpoints-height, $breakpoint-height) !global;
+
+        @if $breakpoint-height-value == null {
+            @error "Height breakpoint '#{$breakpoint-height}' is invalid";
+        }
+    }
+
+    @if $breakpoint-width and $breakpoint-height == 0 {
+        @media (max-width: #{$breakpoint-width-value - 1}) {
+            @content;
+        }
+    } @else if $breakpoint-width == 0 and $breakpoint-height {
+        @media (max-height: #{$breakpoint-height-value - 1}) {
+            @content;
+        }
+    } @else {
+        @media (max-width: #{$breakpoint-width-value - 1}) and (max-height: #{$breakpoint-height-value - 1}) {
+            @content;
+        }
+    }
+}
+
+// Respond above
+@mixin respond-above($breakpoint-width, $breakpoint-height: 0) {
+    @if $breakpoint-width != 0 {
+        $breakpoint-width-value: map-get($grid-breakpoints, $breakpoint-width) !global;
+
+        @if $breakpoint-width-value == null {
+            @error "Width breakpoint '#{$breakpoint-width}' is invalid";
+        }
+    }
+
+    @if $breakpoint-height != 0 {
+        $breakpoint-height-value: map-get($breakpoints-height, $breakpoint-height) !global;
+
+        @if $breakpoint-height-value == null {
+            @error "Height breakpoint '#{$breakpoint-height}' is invalid";
+        }
+    }
+
+    @if $breakpoint-width and $breakpoint-height == 0 {
+        @media (min-width: #{$breakpoint-width-value}) {
+            @content;
+        }
+    } @else if $breakpoint-width == 0 and $breakpoint-height {
+        @media (min-height: #{$breakpoint-height-value}) {
+            @content;
+        }
+    } @else {
+        @media (min-width: #{$breakpoint-width-value}) and (min-height: #{$breakpoint-height-value}) {
+            @content;
+        }
+    }
+}

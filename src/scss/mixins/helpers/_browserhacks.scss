@@ -1,0 +1,43 @@
+// Desktop
+// IE 10 & 11 - http://browserhacks.com/#hack-28f493d247a12ab654f6c3637f6978d5
+@mixin only-ie {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @content;
+    }
+}
+
+// Edge 12-18 (& maybe also WebKit based versions? Need to test.) - https://browserstrangeness.github.io/css_hacks.html#edge
+@mixin only-edge {
+    @supports (-ms-ime-align: auto) {
+        @content;
+    }
+}
+
+// Recentish WebKit based browsers - Chrome 28+, Safari 9+, Samsung Internet 1.5+, Opera 15+ and maybe more - https://browserstrangeness.github.io/css_hacks.html#chrome
+@mixin only-webkit {
+    // Filter IE (doesn't support Feature Queries) & Edge 12-18
+    @supports not (-ms-ime-align: auto) {
+        // Filter Firefox since it obeys to -webkit- properties from version 49+ - https://hacks.mozilla.org/2016/09/firefox-49-fixes-sites-designed-with-webkit-in-mind-and-more/
+        @supports not (-moz-appearance: meterbar) {
+            // Filter remaining browsers
+            @supports (-webkit-appearance: none) {
+                @content;
+            }
+        }
+    }
+}
+
+// Firefox 22+ - http://browserhacks.com/#hack-4b5cb295c5a512baabcebfa69ff17f86
+@mixin only-ff {
+    @supports (-moz-appearance: meterbar) {
+        @content;
+    }
+}
+
+// Mobile
+// iOS 9+ - https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-overflow-scrolling
+@mixin only-ios {
+    @supports (-webkit-overflow-scrolling: touch) {
+        @content
+    }
+}

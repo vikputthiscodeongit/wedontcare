@@ -1,0 +1,57 @@
+// Color system
+$white:    #fff !default;
+$black:    #000 !default;
+
+$primary:       $black;
+$secondary:     $white;
+
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary
+);
+
+
+// Body
+$body-bg:                   $black;
+$body-color:                $white;
+
+
+// Links
+$link-color:                              theme-color("secondary");
+$link-decoration:                         transparent solid underline;
+$link-hover-color:                        $link-color;
+$link-hover-decoration:                   currentColor solid underline;
+
+
+// Grid breakpoints
+$grid-breakpoints: (
+    xxs: 0,
+    xs: 375px,
+    sm: 568px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1920px,
+    xxxl: 2560px
+);
+
+
+// Grid containers
+$container-max-widths: (
+    xs: 448px,
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1280px,
+    xxxl: 1366px
+);
+
+
+// Components
+$transition-base:             0.1s linear;
+
+
+// Typography
+$font-family-sans-serif:      "Rockwell", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace:       "Courier New", monospace;

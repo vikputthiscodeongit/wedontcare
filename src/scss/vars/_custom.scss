@@ -1,0 +1,18 @@
+// RWD
+// Height breakpoints
+$breakpoints-height: (
+    xxxs: 240px,
+    xxs: 280px,
+    xs: 360px,
+    sm: 480px,
+    md: 568px,
+    lg: 720px,
+    xl: 800px,
+    xxl: 960px,
+    xxxl: 1080px
+);
+
+
+// Others
+// Body
+$body-min-width: 320px;
