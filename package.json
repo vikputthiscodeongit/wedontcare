@@ -34,7 +34,7 @@
     "Chrome >= 61",
     "Firefox >= 56",
     "Edge >= 16",
-    "not Explorer <= 11",
+    "Explorer 11",
     "iOS >= 11",
     "Safari >= 11",
     "not Android <= 4.4.4",
