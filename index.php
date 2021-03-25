@@ -29,6 +29,13 @@
     </span>
   </div>
 
+  <form class="form form--mailing" id="form-mailing">
+    <div class="form__field form__field--inline-send">
+      <label class="form__label sr-only" for="mailing-email">Enter your email to stay up to date</label>
+      <input class="form__input" type="mailing-email" name="mailing-email" id="mailing-email" placeholder="Enter your email to stay up to date">
+      <button class="form__submit btn" type="submit">Sign up</button>
+    </div>
+  </form>
 </section>
 
 <?php include "footer.php"; ?>
