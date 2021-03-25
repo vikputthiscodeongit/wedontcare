@@ -20,7 +20,7 @@
 
     <!-- Required site assets -->
     <?php
-      $style_version = date("Ymd_His", filemtime("/dist/css/style.css"));
+      $style_version = date("Ymd_His", filemtime("dist/css/style.css"));
     ?>
     <link rel="stylesheet" type="text/css" href="/dist/css/style.css?ver=<?php echo $style_version; ?>">
 
