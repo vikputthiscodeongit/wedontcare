@@ -1,0 +1,61 @@
+.form {
+    max-width: rem(360px);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__field,
+    &__input {
+        width: 100%;
+    }
+
+    &__field {
+        &--inline-send {
+            display: flex;
+        }
+    }
+
+    &__submit,
+    &__input {
+        text-transform: uppercase;
+        line-height: 1.25;
+        font-family: Arial, sans-serif;
+        border: none;
+        border-radius: 0;
+    }
+
+    &__input {
+        padding: 0 rem(6px);
+        font-size: rem(10px);
+
+        @include respond-above(md) {
+            font-size: rem(12px);
+        }
+
+        @include respond-above(xl) {
+            font-size: rem(13px);
+        }
+
+        .form__field--inline-send & {
+            flex-grow: 1;
+            height: rem(24px);
+        }
+    }
+
+    &__submit {
+        display: flex;
+        align-items: center;
+        padding: 0 rem(6px);
+        white-space: nowrap;
+        font-size: rem(10px);
+        background-color: $gray-400;
+
+        @include respond-above(md) {
+            font-size: rem(11px);
+        }
+
+        .form__field--inline-send & {
+            flex-grow: 1;
+        }
+    }
+}

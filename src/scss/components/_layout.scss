@@ -74,4 +74,11 @@ main {
     > .spinning-logo {
       grid-row: 2;
     }
+
+    > .form {
+      &--mailing {
+        grid-row: 3;
+      }
+    }
+  }
 }
