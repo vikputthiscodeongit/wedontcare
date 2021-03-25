@@ -16,16 +16,19 @@
   <a class="nav-link" href="#" target="_blank">Instagram</a>
 </div>
 
-<div class="spinning-logo">
-  <div class="aspect-ratio aspect-ratio--square" aria-hidden="true">
-    <div class="content">
-      <video>Your browser sucks and does not support awesomeness.</video>
+<section class="content">
+  <div class="spinning-logo">
+    <div class="aspect-ratio aspect-ratio--square" aria-hidden="true">
+      <div class="content">
+        <video poster="https://via.placeholder.com/600x400">Your browser sucks and does not support awesomeness.</video>
+      </div>
     </div>
+
+    <span class="sr-only">
+      We Don't Care
+    </span>
   </div>
 
-  <span class="sr-only">
-    We Don't Care
-  </span>
-</div>
+</section>
 
 <?php include "footer.php"; ?>

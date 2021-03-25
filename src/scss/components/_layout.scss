@@ -5,10 +5,73 @@ main {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: rem(8px);
+  padding: rem(16px);
+
+  @include respond-above(0, lg) {
+    @include respond-above(md) {
+      padding: rem(40px)
+    }
+
+    @include respond-above(xl) {
+      padding: rem(100px);
+    }
+  }
 
   @include only-ie {
     min-height: none;
     height: 100vh;
   }
+
+  > .nav-item {
+    &:nth-child(1),
+    &:nth-child(2) {
+      grid-row: 1 / span 1;
+    }
+
+    &:nth-child(1),
+    &:nth-child(4) {
+      grid-column: 1 / span 1;
+    }
+
+    &:nth-child(2),
+    &:nth-child(4) {
+      grid-column: 2 / span 1;
+      text-align: right;
+    }
+
+    &:nth-child(3),
+    &:nth-child(4) {
+      grid-row: 3 / span 1;
+    }
+  }
+
+  > .content {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+    display: grid;
+    grid-template-rows: rem(24px) 1fr rem(24px);
+    grid-row-gap: rem(40px);
+    width: rem(280px);
+    margin-left: auto;
+    margin-right: auto;
+
+    @include respond-above(xs, md) {
+      width: rem(320px);
+    }
+
+    @include respond-above(sm, lg) {
+      width: rem(400px);
+    }
+
+    @include respond-above(md, xl) {
+      width: rem(512px);
+    }
+
+    @include respond-above(xxxl, xxxl) {
+      width: rem(600px);
+    }
+
+    > .spinning-logo {
+      grid-row: 2;
+    }
 }
