@@ -5,7 +5,11 @@
 </div>
 
 <div class="nav-item">
-  <a class="nav-link" href="https://latest.wedontcaregroup.com" target="_self">Latest</a>
+  <a class="nav-link" id="nav-link-latest" href="https://latest.wedontcaregroup.com" target="_self">Latest</a>
+
+  <div class="rollout" id="rollout-latest" aria-describedby="nav-link-latest">
+    <p>Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.</p>
+  </div>
 </div>
 
 <div class="nav-item">
