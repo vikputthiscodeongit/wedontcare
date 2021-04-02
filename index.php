@@ -1,7 +1,7 @@
 <?php include "header.php"; ?>
 
 <div class="nav-item">
-  <a class="nav-link" href="https://shop.wedontcaregroup.com" target="_self">Webshop</a>
+  <a class="nav-link text text--flashy" href="https://shop.wedontcaregroup.com" target="_self">Webshop</a>
 </div>
 
 <div class="nav-item">
