@@ -28,16 +28,8 @@
     "webpack-cli": "^3.3.12"
   },
   "browserslist": [
-    ">= 1%",
+    ">= 0.5%",
     "last 1 major version",
-    "not dead",
-    "Chrome >= 61",
-    "Firefox >= 56",
-    "Edge >= 16",
-    "Explorer 11",
-    "iOS >= 11",
-    "Safari >= 11",
-    "not Android <= 4.4.4",
-    "Opera >= 48"
+    "not dead"
   ]
 }
