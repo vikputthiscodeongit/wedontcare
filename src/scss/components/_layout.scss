@@ -2,19 +2,22 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: rem(20px) auto rem(20px);
+  grid-row-gap: rem(40px);
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   padding: rem(16px);
 
-  @include respond-above(0, lg) {
-    @include respond-above(md) {
-      padding: rem(40px)
-    }
+  @include respond-above(sm) {
+    padding: rem(50px);
+  }
 
-    @include respond-above(xl) {
-      padding: rem(100px);
-    }
+  @include respond-above(lg, md) {
+    padding: rem(75px);
+  }
+
+  @include respond-above(xl, lg) {
+    padding: rem(100px);
   }
 
   @include only-ie {
@@ -51,23 +54,41 @@ main {
     display: grid;
     grid-template-rows: rem(24px) 1fr rem(24px);
     grid-row-gap: rem(40px);
-    width: rem(280px);
+    // width: rem(280px);
     margin-left: auto;
     margin-right: auto;
 
+    // @include respond-above(xs, md) {
+    //   width: rem(320px);
+    // }
+
+    // @include respond-above(sm, lg) {
+    //   width: rem(400px);
+    // }
+
+    // @include respond-above(md, xl) {
+    //   width: rem(512px);
+    // }
+
+    // @include respond-above(xxxl, xxxl) {
+    //   width: rem(600px);
+    // }
+
+    width: rem(240px);
+
     @include respond-above(xs, md) {
-      width: rem(320px);
+      width: rem(280px);
     }
 
-    @include respond-above(sm, lg) {
-      width: rem(400px);
+    @include respond-above(md, md) {
+      width: rem(360px);
     }
 
-    @include respond-above(md, xl) {
-      width: rem(512px);
+    @include respond-above(xl, lg) {
+      width: rem(480px);
     }
 
-    @include respond-above(xxxl, xxxl) {
+    @include respond-above(xxl, xxl) {
       width: rem(600px);
     }
 
