@@ -1,8 +1,9 @@
 .form {
-    max-width: rem(360px);
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+
+    &--width-small {
+        max-width: rem(360px);
+    }
 
     &__field,
     &__input {

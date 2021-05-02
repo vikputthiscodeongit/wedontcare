@@ -15,4 +15,14 @@ $breakpoints-height: (
 
 // Others
 // Body
-$body-min-width: 320px;
+$body-min-width: rem(320px);
+
+// Main
+$main-padding: 5vw;
+$main-md-padding: 7.5vw;
+$main-row-gap: rem(40px);
+$main-outer-row-height: rem(20px);
+$main-inner-row-min-height: rem(400px);
+$main-inner-row-md-min-height: $main-inner-row-min-height;
+$main-inner-row-max-height: calc(100vh - (#{$main-padding} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
+$main-inner-row-md-max-height: calc(100vh - (#{$main-md-padding} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));

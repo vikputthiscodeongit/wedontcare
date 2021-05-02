@@ -23,8 +23,10 @@
         <!-- Site assets -->
         <?php
             $style_version = date("Ymd_His", filemtime("dist/css/style.css"));
+            $script_version = date("Ymd_His", filemtime("dist/js/bundle-main.js"));
         ?>
         <link rel="stylesheet" type="text/css" href="/dist/css/style.css?ver=<?php echo $style_version; ?>">
+        <script src="/dist/js/bundle-main.js?ver=<?php echo $script_version; ?>" defer></script>
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="/dist/favicon/apple-touch-icon.png">
