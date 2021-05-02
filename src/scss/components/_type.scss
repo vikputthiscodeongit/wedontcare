@@ -1,33 +1,33 @@
 @font-face {
-  src: local("Rockwell"),
-       url("../fonts/rockwell/rockwell-regular.ttf") format("truetype");
-  font-family: "Rockwell";
-  font-display: swap;
-  font-style: normal;
-  font-weight: $font-weight-base;
+    src: local("Rockwell"),
+         url("../fonts/rockwell/rockwell-regular.ttf") format("truetype");
+    font-family: "Rockwell";
+    font-display: swap;
+    font-style: normal;
+    font-weight: $font-weight-base;
 }
 
 .text {
-  &--flashy {
-    color: red;
-    animation: color-change 2s infinite;
-  }
+    &--flashy {
+        color: red;
+        animation: color-change 2s infinite;
+    }
 }
 
 @keyframes color-change {
-  0% {
-    color: red;
-  }
+    0% {
+        color: red;
+    }
 
-  25% {
-    color: yellow;
-  }
+    25% {
+        color: yellow;
+    }
 
-  50% {
-    color: blue;
-  }
+    50% {
+        color: blue;
+    }
 
-  75% {
-    color: green;
-  }
+    75% {
+        color: green;
+    }
 }
