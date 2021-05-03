@@ -27,23 +27,48 @@ import "../scss/style.scss";
 
     // Event handlers
     document.addEventListener("DOMContentLoaded", function() {
-        // rollout.init();
+        rolloutInit();
 
         logoInit();
     });
 
 
     // Rollout
-    // let rollout = {};
+    function rolloutInit() {
+        console.log("In rolloutInit");
 
-    // rollout.init = function() {
-    //     const rollouts = document.querySelectorAll("rollout");
-    //     const rolloutsArr = Array.from(rollouts);
+        const rollouts    = document.querySelectorAll(".rollout"),
+              rolloutsArr = Array.from(rollouts);
 
-    //     rolloutsArr.forEach(function(rollout) {
-    //         // Code
-    //     });
-    // }
+        if (rolloutsArr.length === 0) {
+            return;
+        }
+
+        rolloutsArr.forEach(function(rollout) {
+            rolloutPosFixer(rollout);
+        });
+
+        window.addEventListener("resize", debounce(function() {
+            rolloutsArr.forEach(function(rollout) {
+                rolloutPosFixer(rollout);
+            });
+        }, 25));
+    }
+
+    function rolloutPosFixer(rollout) {
+        console.log("In rolloutPosFixer");
+
+        const anchor = rollout.previousElementSibling;
+
+        if (!anchor) {
+            return;
+        }
+
+        const anchorLineHeightVal = cssValue(anchor, "line-height");
+        console.log("anchorLineHeightVal: " + anchorLineHeightVal);
+
+        rollout.style.top = anchorLineHeightVal;
+    }
 
 
     // Spinning logo
