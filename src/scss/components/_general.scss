@@ -5,6 +5,12 @@ body {
     text-transform: uppercase;
 }
 
+p {
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
 a {
     color: $white;
     transition: $transition-base;
