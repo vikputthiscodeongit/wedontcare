@@ -26,14 +26,10 @@ import "../scss/style.scss";
 
 
     // Event handlers
-    window.addEventListener("resize", debounce(function() {
-        logoSizeFixer();
-    }, 25));
-
     document.addEventListener("DOMContentLoaded", function() {
         // rollout.init();
 
-        logoSizeFixer();
+        logoInit();
     });
 
 
@@ -51,11 +47,23 @@ import "../scss/style.scss";
 
 
     // Spinning logo
-    function logoSizeFixer() {
+    function logoInit() {
+        console.log("In logoInit");
+
         const logoEl = document.querySelector(".spinning-logo");
 
         if (!logoEl)
             return;
+
+        logoSizeFixer(logoEl);
+
+        window.addEventListener("resize", debounce(function() {
+            logoSizeFixer(logoEl);
+        }, 25));
+    }
+
+    function logoSizeFixer(logoEl) {
+        console.log("In logoSizeFixer");
 
         const contentEl = logoEl.parentElement;
 
