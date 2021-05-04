@@ -101,25 +101,23 @@ import "../scss/style.scss";
         const mainWidth       = pxStrToNo(mainWidthVal),
               mainPaddingLeft = pxStrToNo(mainPaddingVal);
 
-        const mainRowsVal    = cssValue(mainEl, "grid-template-rows"),
-              mainRowsValArr = mainRowsVal.split(" ");
+        const mainRowsVal = cssValue(mainEl, "grid-template-rows");
 
-        const mainContentRowHeight = pxStrToNo(mainRowsValArr[1]);
+        const mainContentRowHeight = pxStrToNo(mainRowsVal.split(" ")[1]);
         // console.log(mainContentRowHeight);
 
         const contentRowsVal    = cssValue(contentEl, "grid-template-rows"),
-              contentRowsValArr = contentRowsVal.split(" "),
               contentRowGapVal  = cssValue(contentEl, "grid-row-gap");
 
-        const contentRowTopHeight = pxStrToNo(contentRowsValArr[0]),
+        const contentRowTopHeight = pxStrToNo(contentRowsVal.split(" ")[0]),
               contentRowGapHeight = pxStrToNo(contentRowGapVal);
         // console.log(contentRowTopHeight);
         // console.log(contentRowGapHeight);
 
         const contentMaxWidth  = mainWidth - (mainPaddingLeft * 2),
               contentMaxHeight = mainContentRowHeight - (contentRowTopHeight * 2) - (contentRowGapHeight * 2);
-        console.log("contentMaxWidth: " + contentMaxWidth);
-        console.log("contentMaxHeight: " + contentMaxHeight);
+        // console.log("contentMaxWidth: " + contentMaxWidth);
+        // console.log("contentMaxHeight: " + contentMaxHeight);
 
         const logoTargetWidth = Math.min(contentMaxWidth, contentMaxHeight);
         console.log("logoTargetWidth: " + logoTargetWidth);
