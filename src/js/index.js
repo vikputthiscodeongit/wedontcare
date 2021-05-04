@@ -119,7 +119,9 @@ import "../scss/style.scss";
         // console.log("contentMaxWidth: " + contentMaxWidth);
         // console.log("contentMaxHeight: " + contentMaxHeight);
 
-        const logoTargetWidth = Math.min(contentMaxWidth, contentMaxHeight);
+        const logoTargetWidth = Math.min(contentMaxWidth, contentMaxHeight) > 600
+            ? 600
+            : Math.min(contentMaxWidth, contentMaxHeight);
         console.log("logoTargetWidth: " + logoTargetWidth);
 
         logoEl.style.width = logoTargetWidth + "px";
