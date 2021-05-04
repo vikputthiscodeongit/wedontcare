@@ -1,15 +1,15 @@
 // RWD
 // Height breakpoints
 $breakpoints-height: (
-    xxxs: 240px,
-    xxs: 280px,
-    xs: 360px,
-    sm: 480px,
-    md: 568px,
-    lg: 720px,
-    xl: 800px,
-    xxl: 960px,
-    xxxl: 1080px
+    xxxs: rem(240px),
+    xxs: rem(280px),
+    xs: rem(360px),
+    sm: rem(480px),
+    md: rem(568px),
+    lg: rem(720px),
+    xl: rem(800px),
+    xxl: rem(960px),
+    xxxl: rem(1080px)
 );
 
 
@@ -18,11 +18,21 @@ $breakpoints-height: (
 $body-min-width: rem(320px);
 
 // Main
+$main-padding-min: rem(16px);
 $main-padding: 5vw;
 $main-md-padding: 7.5vw;
+$main-padding-max: rem(144px);
+
 $main-row-gap: rem(40px);
+
 $main-outer-row-height: rem(20px);
-$main-inner-row-min-height: rem(400px);
+
+$main-inner-row-min-height-min: rem(400px);
+$main-inner-row-min-height: $main-inner-row-min-height-min;
 $main-inner-row-md-min-height: $main-inner-row-min-height;
+$main-inner-row-min-height-max: $main-inner-row-md-min-height;
+
+$main-inner-row-max-height-min: calc(100vh - (#{$main-padding-min} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
 $main-inner-row-max-height: calc(100vh - (#{$main-padding} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
 $main-inner-row-md-max-height: calc(100vh - (#{$main-md-padding} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
+$main-inner-row-max-height-max: calc(100vh - (#{$main-padding-max} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));

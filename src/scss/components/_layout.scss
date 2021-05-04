@@ -5,11 +5,24 @@ main {
     grid-row-gap: $main-row-gap;
     align-items: center;
     justify-content: center;
+    max-width: rem(1920px);
+    margin-left: auto;
+    margin-right: auto;
     padding: $main-padding;
+
+    @media (max-width: $body-min-width - rem(0.02px)) {
+        grid-template-rows: $main-outer-row-height minmax(#{$main-inner-row-min-height-min}, #{$main-inner-row-max-height-min}) $main-outer-row-height;
+        padding: $main-padding-min;
+    }
 
     @include respond-above(md) {
         grid-template-rows: $main-outer-row-height minmax(#{$main-inner-row-md-min-height}, #{$main-inner-row-md-max-height}) $main-outer-row-height;
         padding: $main-md-padding;
+    }
+
+    @include respond-above(xxl) {
+        grid-template-rows: $main-outer-row-height minmax(#{$main-inner-row-min-height-max}, #{$main-inner-row-max-height-max}) $main-outer-row-height;
+        padding: $main-padding-max;
     }
 
     > .nav-item {

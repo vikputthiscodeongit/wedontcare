@@ -26,25 +26,23 @@ $link-hover-decoration:                   currentColor solid underline;
 // Grid breakpoints
 $grid-breakpoints: (
     xxs: 0,
-    xs: 375px,
-    sm: 568px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1920px,
-    xxxl: 2560px
+    xs: rem(375px),
+    sm: rem(568px),
+    md: rem(768px),
+    lg: rem(992px),
+    xl: rem(1200px),
+    xxl: rem(1920px)
 );
 
 
 // Grid containers
 $container-max-widths: (
-    xs: 448px,
-    sm: 540px,
-    md: 720px,
-    lg: 960px,
-    xl: 1140px,
-    xxl: 1280px,
-    xxxl: 1366px
+    xs: rem(448px),
+    sm: rem(540px),
+    md: rem(720px),
+    lg: rem(960px),
+    xl: rem(1140px),
+    xxl: rem(1280px)
 );
 
 
