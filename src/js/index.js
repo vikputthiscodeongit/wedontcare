@@ -108,11 +108,13 @@ import "../scss/style.scss";
         if (!contentEl)
             return;
 
-        const mainWidthVal   = cssValue(mainEl, "width"),
-              mainPaddingVal = cssValue(mainEl, "padding");
+        const mainWidthVal       = cssValue(mainEl, "width"),
+              mainPaddingLeftVal = cssValue(mainEl, "padding-left");
 
         const mainWidth       = pxStrToNo(mainWidthVal),
-              mainPaddingLeft = pxStrToNo(mainPaddingVal);
+              mainPaddingLeft = pxStrToNo(mainPaddingLeftVal);
+        // console.log(mainWidth);
+        // console.log(mainPaddingLeft);
 
         const mainRowsVal = cssValue(mainEl, "grid-template-rows");
 
