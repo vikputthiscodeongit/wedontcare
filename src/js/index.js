@@ -1,4 +1,5 @@
 import debounce from "lodash/debounce";
+import isEmpty from "lodash/isEmpty";
 
 import "../scss/style.scss";
 
@@ -27,8 +28,9 @@ import "../scss/style.scss";
 
     // Event handlers
     document.addEventListener("DOMContentLoaded", function() {
-        rolloutInit();
         inputDeviceDetector();
+
+        rollout.init();
 
         logo.init();
     });
@@ -47,31 +49,38 @@ import "../scss/style.scss";
 
 
     // Rollout
-    function rolloutInit() {
-        console.log("In rolloutInit");
+    let rollout = {};
 
-        const rollouts    = document.querySelectorAll(".rollout"),
-              rolloutsArr = Array.from(rollouts);
+    rollout.init = function() {
+        const rolloutElsArr = [...rollout.els];
 
-        if (rolloutsArr.length === 0) {
+        if (rolloutElsArr.length === 0) {
             return;
         }
 
-        rolloutsArr.forEach(function(rollout) {
-            rolloutPosFixer(rollout);
+        rolloutElsArr.forEach((rolloutEl, i) => {
+            console.log(i);
+
+            rollout.posFixer(rolloutEl);
+
+            rollout.cycleTexts(rolloutEl, i);
         });
 
         window.addEventListener("resize", debounce(function() {
-            rolloutsArr.forEach(function(rollout) {
-                rolloutPosFixer(rollout);
+            rolloutElsArr.forEach(function(rolloutEl) {
+                rollout.posFixer(rolloutEl);
             });
         }, 25));
-    }
+    };
 
-    function rolloutPosFixer(rollout) {
+    rollout.els = document.querySelectorAll(".rollout");
+
+    rollout.texts = {};
+
+    rollout.posFixer = function(rolloutEl) {
         console.log("In rolloutPosFixer");
 
-        const anchor = rollout.previousElementSibling;
+        const anchor = rolloutEl.previousElementSibling;
 
         if (!anchor) {
             return;
@@ -80,10 +89,67 @@ import "../scss/style.scss";
         const anchorLineHeightVal = cssValue(anchor, "line-height");
         console.log("anchorLineHeightVal: " + anchorLineHeightVal);
 
-        rollout.style.top = anchorLineHeightVal;
-    }
+        rolloutEl.style.top = anchorLineHeightVal;
+    };
 
+    rollout.getTexts = function(rolloutEl, rolloutId) {
+        console.log("In rollout.getTexts().");
 
+        const elAttrs    = rolloutEl.attributes,
+              elAttrsArr = [...elAttrs];
+        // console.log(elAttrsArr);
+
+        const textAttrRegex = /^data-rollout-text-[0-9]+/;
+
+        let texts = [];
+
+        elAttrsArr.forEach(function(elAttr) {
+            if (!elAttr.nodeName.match(textAttrRegex))
+                return;
+
+            texts.push(elAttr.value);
+        });
+
+        console.log(texts);
+
+        texts.sort(() => Math.random() - 0.5);
+
+        console.log(texts);
+
+        rollout.texts[rolloutId] = texts;
+    };
+
+    rollout.cycleTexts = function(rolloutEl, rolloutId) {
+        console.log("In rollout.cycleTexts().");
+
+        console.log(rolloutEl);
+
+        if (isEmpty(rollout.texts[rolloutId]))
+            rollout.getTexts(rolloutEl, rolloutId);
+
+        let i = 0;
+
+        while(i < rollout.texts.length) {
+            // If .rollout !hidden
+                // Hide it
+
+            // If .rollout !empty
+                // Empty it
+
+            // If counter = texts length
+                // Reset counter
+
+            // Get text (depending on counter)
+            // Put text in .rollout
+            // Show rollout
+
+            i++;
+
+            setTimeout(function() {
+                rollout.cycleTexts(rolloutEl, rolloutId);
+            }, 5000);
+        }
+    };
 
 
     // Spinning logo
