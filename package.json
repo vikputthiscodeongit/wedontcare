@@ -9,7 +9,6 @@
   "author": "Viktor",
   "license": "ISC",
   "dependencies": {
-    "@popperjs/core": "^2.9.1",
     "bootstrap": "^4.6.0",
     "lodash": "^4.17.21"
   },
