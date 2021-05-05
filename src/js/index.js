@@ -30,7 +30,7 @@ import "../scss/style.scss";
         rolloutInit();
         inputDeviceDetector();
 
-        logoInit();
+        logo.init();
     });
 
 
@@ -84,26 +84,28 @@ import "../scss/style.scss";
     }
 
 
+
+
     // Spinning logo
-    function logoInit() {
-        console.log("In logoInit");
+    let logo = {};
 
-        const logoEl = document.querySelector(".spinning-logo");
-
-        if (!logoEl)
+    logo.init = function() {
+        if (!logo.el)
             return;
 
-        logoSizeFixer(logoEl);
+        logo.sizeFixer();
 
         window.addEventListener("resize", debounce(function() {
-            logoSizeFixer(logoEl);
+            logo.sizeFixer();
         }, 25));
-    }
+    };
 
-    function logoSizeFixer(logoEl) {
-        console.log("In logoSizeFixer");
+    logo.el = document.querySelector(".spinning-logo");
 
-        const contentEl = logoEl.parentElement;
+    logo.sizeFixer = function() {
+        console.log("In logo.sizeFixer().");
+
+        const contentEl = logo.el.parentElement;
 
         if (!contentEl)
             return;
@@ -139,6 +141,6 @@ import "../scss/style.scss";
             : Math.min(contentMaxWidth, contentMaxHeight);
         console.log("logoTargetWidth: " + logoTargetWidth);
 
-        logoEl.style.width = logoTargetWidth + "px";
-    }
+        logo.el.style.width = logoTargetWidth + "px";
+    };
 })();
