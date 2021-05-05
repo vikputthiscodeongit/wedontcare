@@ -30,7 +30,8 @@
   },
   "browserslist": [
     ">= 0.5%",
-    "last 1 major version",
-    "not dead"
+    "last 2 major versions",
+    "not dead",
+    "not Explorer <= 11"
   ]
 }
