@@ -28,9 +28,22 @@ import "../scss/style.scss";
     // Event handlers
     document.addEventListener("DOMContentLoaded", function() {
         rolloutInit();
+        inputDeviceDetector();
 
         logoInit();
     });
+
+
+    // Input devices
+    function inputDeviceDetector() {
+        document.body.addEventListener("mousedown", function() {
+            document.body.classList.add("using-mouse");
+        });
+
+        document.body.addEventListener("keydown", function() {
+            document.body.classList.remove("using-mouse");
+        });
+    }
 
 
     // Rollout

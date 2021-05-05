@@ -12,7 +12,15 @@ p {
 }
 
 a {
-    color: $white;
     transition: $transition-base;
-    transition-property: text-decoration-color, color;
+    transition-property: text-decoration-color, color, outline;
+
+    &:focus {
+        outline: rem(2px) solid currentColor;
+        outline-offset: rem(4px);
+
+        .using-mouse & {
+            outline: none;
+        }
+    }
 }
