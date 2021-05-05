@@ -38,8 +38,8 @@ module.exports = {
                 to: "favicon"
             },
             {
-                from: "images",
-                to: "images",
+                from: "media",
+                to: "media",
                 ignore: ["compiled/**/*"]
             }
         ])
