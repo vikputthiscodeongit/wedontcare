@@ -15,7 +15,10 @@
         data-rollout-text-2="Ut mauris neque, sagittis a ullamcorper quis, pellentesque dapibus ante."
         data-rollout-text-3="Duis et nunc ac nisl elementum viverra."
         data-rollout-text-4="Curabitur nec vulputate purus, ut ultrices nibh."
-    ></div>
+    >
+        <!-- <p>Ut mauris neque, sagittis a ullamcorper quis, pellentesque dapibus ante.</p> -->
+        <p>Ut mauris neque, sagittis.</p>
+    </div>
 </div>
 
 <div class="nav-item">

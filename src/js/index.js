@@ -58,12 +58,10 @@ import "../scss/style.scss";
             return;
         }
 
-        rolloutElsArr.forEach((rolloutEl, i) => {
-            console.log(i);
-
+        rolloutElsArr.forEach((rolloutEl) => {
             rollout.posFixer(rolloutEl);
 
-            rollout.cycleTexts(rolloutEl, i);
+            rollout.cycleTexts(rolloutEl);
         });
 
         window.addEventListener("resize", debounce(function() {
@@ -114,22 +112,24 @@ import "../scss/style.scss";
 
         texts.sort(() => Math.random() - 0.5);
 
-        console.log(texts);
-
         rollout.texts[rolloutId] = texts;
     };
 
-    rollout.cycleTexts = function(rolloutEl, rolloutId) {
+    rollout.cycleTexts = function(rolloutEl) {
         console.log("In rollout.cycleTexts().");
 
         console.log(rolloutEl);
 
+        const rolloutId = rolloutEl.getAttribute("id");
+
         if (isEmpty(rollout.texts[rolloutId]))
             rollout.getTexts(rolloutEl, rolloutId);
 
+        console.log(rollout.texts);
+
         let i = 0;
 
-        while(i < rollout.texts.length) {
+        while(i < rollout.texts[rolloutId].length) {
             // If .rollout !hidden
                 // Hide it
 
@@ -143,9 +143,21 @@ import "../scss/style.scss";
             // Put text in .rollout
             // Show rollout
 
+            console.log(i);
+
+            console.log(cssValue(rolloutEl, "height"));
+
+            if (cssValue(rolloutEl, "height") !== "0px") {
+                rolloutEl.style.height = "0px";
+            }
+
             i++;
 
-            setTimeout(function() {
+            if (i === rollout.texts.length) {
+                i = 0;
+            }
+
+            setInterval(function() {
                 rollout.cycleTexts(rolloutEl, rolloutId);
             }, 5000);
         }
@@ -185,6 +197,7 @@ import "../scss/style.scss";
         // console.log(mainPaddingLeft);
 
         const mainRowsVal = cssValue(mainEl, "grid-template-rows");
+        console.log(mainRowsVal);
 
         const mainContentRowHeight = pxStrToNo(mainRowsVal.split(" ")[1]);
         // console.log(mainContentRowHeight);
