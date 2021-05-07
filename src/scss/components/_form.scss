@@ -2,7 +2,11 @@
     width: 100%;
 
     &--width-small {
-        max-width: rem(360px);
+        max-width: rem(300px);
+
+        @include respond-above(md) {
+            max-width: rem(340px);
+        }
     }
 
     &__field,
@@ -35,10 +39,6 @@
             font-size: rem(12px);
         }
 
-        @include respond-above(xl) {
-            font-size: rem(13px);
-        }
-
         &:focus {
             outline: $primary solid rem(2px);
             outline-offset: rem(-3px);
@@ -65,7 +65,7 @@
         }
 
         &:focus {
-            background-color: $gray-500;
+            background-color: $gray-600;
         }
 
         .form__field--inline-send & {
