@@ -54,21 +54,18 @@ import "../scss/style.scss";
     rollout.init = function() {
         const rolloutElsArr = [...rollout.els];
 
-        if (rolloutElsArr.length === 0) {
+        if (rolloutElsArr.length === 0)
             return;
-        }
 
         rolloutElsArr.forEach((rolloutEl) => {
             rollout.posFixer(rolloutEl);
 
             rollout.cycleTexts(rolloutEl);
-        });
 
-        window.addEventListener("resize", debounce(function() {
-            rolloutElsArr.forEach(function(rolloutEl) {
+            window.addEventListener("resize", debounce(function() {
                 rollout.posFixer(rolloutEl);
-            });
-        }, 25));
+            }, 25));
+        });
     };
 
     rollout.els = document.querySelectorAll(".rollout");
@@ -76,22 +73,34 @@ import "../scss/style.scss";
     rollout.texts = {};
 
     rollout.posFixer = function(rolloutEl) {
-        console.log("In rolloutPosFixer");
+        console.log("In rolloutPosFixer().");
 
         const anchor = rolloutEl.previousElementSibling;
 
         if (!anchor) {
+            console.error("This rollout has no sibling to anchor on to. Returning from function.");
+
             return;
         }
 
         const anchorLineHeightVal = cssValue(anchor, "line-height");
-        console.log("anchorLineHeightVal: " + anchorLineHeightVal);
+        console.log(`anchorLineHeightVal: ${anchorLineHeightVal}`);
 
         rolloutEl.style.top = anchorLineHeightVal;
     };
 
-    rollout.getTexts = function(rolloutEl, rolloutId) {
+    rollout.getTexts = function(rolloutEl) {
         console.log("In rollout.getTexts().");
+
+        const rolloutId = rolloutEl.hasAttribute("id")
+            ? rolloutEl.getAttribute("id")
+            : false;
+
+        if (!rolloutId) {
+            console.error("This rollout is missing its id. Returning from function.");
+
+            return;
+        }
 
         const elAttrs    = rolloutEl.attributes,
               elAttrsArr = [...elAttrs];
@@ -115,52 +124,57 @@ import "../scss/style.scss";
         rollout.texts[rolloutId] = texts;
     };
 
-    rollout.cycleTexts = function(rolloutEl) {
+    rollout.cycleTexts = function(rolloutEl, textIndex) {
         console.log("In rollout.cycleTexts().");
 
         console.log(rolloutEl);
 
-        const rolloutId = rolloutEl.getAttribute("id");
+        if (typeof textIndex === "undefined")
+            textIndex = 0;
+
+        console.log(`textIndex: ${textIndex}`);
+
+        const rolloutId = rolloutEl.hasAttribute("id")
+            ? rolloutEl.getAttribute("id")
+            : false;
+
+        if (!rolloutId) {
+            console.error("This rollout is missing its id. Returning from function.");
+
+            return;
+        }
+
+        console.log(`rolloutId: ${rolloutId}`);
 
         if (isEmpty(rollout.texts[rolloutId]))
-            rollout.getTexts(rolloutEl, rolloutId);
+            rollout.getTexts(rolloutEl);
+
+        if (rollout.texts[rolloutId].length === 0) {
+            console.error("No texts to process, returning from function.");
+
+            return;
+        }
 
         console.log(rollout.texts);
 
-        let i = 0;
-
-        while(i < rollout.texts[rolloutId].length) {
-            // If .rollout !hidden
-                // Hide it
-
-            // If .rollout !empty
-                // Empty it
-
-            // If counter = texts length
-                // Reset counter
-
-            // Get text (depending on counter)
-            // Put text in .rollout
-            // Show rollout
-
-            console.log(i);
-
-            console.log(cssValue(rolloutEl, "height"));
-
-            if (cssValue(rolloutEl, "height") !== "0px") {
-                rolloutEl.style.height = "0px";
-            }
-
-            i++;
-
-            if (i === rollout.texts.length) {
-                i = 0;
-            }
-
-            setInterval(function() {
-                rollout.cycleTexts(rolloutEl, rolloutId);
-            }, 5000);
+        if (cssValue(rolloutEl, "height") !== "0px") {
+            rolloutEl.style.height = "0px";
         }
+
+        rolloutEl.textContent = rollout.texts[rolloutId][textIndex];
+
+        setTimeout(function() {
+            rolloutEl.style.height = cssValue(rolloutEl, "line-height");
+
+            textIndex++;
+
+            if (textIndex === rollout.texts[rolloutId].length)
+                textIndex = 0;
+
+            setTimeout(function() {
+                rollout.cycleTexts(rolloutEl, textIndex);
+            }, 5000);
+        }, 1000);
     };
 
 
