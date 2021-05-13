@@ -13,7 +13,7 @@ import "../scss/style.scss";
     }
 
     // Convert CSS pixels to a number
-    function pxStrToNo(string) {
+    function pxToNo(string) {
         if (string.indexOf("px") === -1)
             return;
 
@@ -70,30 +70,21 @@ import "../scss/style.scss";
         if (!contentEl)
             return;
 
-        const mainWidthVal       = cssValue(mainEl, "width"),
-              mainPaddingLeftVal = cssValue(mainEl, "padding-left");
-
-        const mainWidth       = pxStrToNo(mainWidthVal),
-              mainPaddingLeft = pxStrToNo(mainPaddingLeftVal);
+        const mainWidth       = pxToNo(cssValue(mainEl, "width")),
+              mainPaddingLeft = pxToNo(cssValue(mainEl, "padding-left"));
         // console.log(mainWidth);
         // console.log(mainPaddingLeft);
 
-        const mainRowsVal = cssValue(mainEl, "grid-template-rows");
-        console.log(mainRowsVal);
-
-        const mainContentRowHeight = pxStrToNo(mainRowsVal.split(" ")[1]);
+        const mainContentRowHeight = pxToNo(cssValue(mainEl, "grid-template-rows").split(" ")[1]);
         // console.log(mainContentRowHeight);
 
-        const contentRowsVal    = cssValue(contentEl, "grid-template-rows"),
-              contentRowGapVal  = cssValue(contentEl, "grid-row-gap");
-
-        const contentRowTopHeight = pxStrToNo(contentRowsVal.split(" ")[0]),
-              contentRowGapHeight = pxStrToNo(contentRowGapVal);
+        const contentRowTopHeight = pxToNo(cssValue(contentEl, "grid-template-rows").split(" ")[0]),
+              contentRowGap       = pxToNo(cssValue(contentEl, "grid-row-gap"));
         // console.log(contentRowTopHeight);
-        // console.log(contentRowGapHeight);
+        // console.log(contentRowGap);
 
         const contentMaxWidth  = mainWidth - (mainPaddingLeft * 2),
-              contentMaxHeight = mainContentRowHeight - (contentRowTopHeight * 2) - (contentRowGapHeight * 2);
+              contentMaxHeight = mainContentRowHeight - (contentRowTopHeight * 2) - (contentRowGap * 2);
         // console.log("contentMaxWidth: " + contentMaxWidth);
         // console.log("contentMaxHeight: " + contentMaxHeight);
 
