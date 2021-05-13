@@ -2,21 +2,28 @@
 $body-min-width: rem(320px);
 
 // Main
-$main-padding-min: rem(16px);
-$main-padding: 5vw;
-$main-md-padding: 7.5vw;
-$main-padding-max: rem(144px);
+// Front page
+$fp-main-padding-min: rem(16px);
+$fp-main-padding: 5vw;
+$fp-main-md-padding: 7.5vw;
+$fp-main-padding-max: rem(144px);
 
-$main-row-gap: rem(40px);
+$fp-main-row-gap: rem(40px);
 
-$main-outer-row-height: rem(20px);
+$fp-main-outer-row-height: rem(20px);
 
-$main-inner-row-min-height-min: rem(320px);
-$main-inner-row-min-height: $main-inner-row-min-height-min;
-$main-inner-row-md-min-height: $main-inner-row-min-height;
-$main-inner-row-min-height-max: $main-inner-row-md-min-height;
+$fp-main-inner-row-min-height-min: rem(320px);
+$fp-main-inner-row-min-height: $fp-main-inner-row-min-height-min;
+$fp-main-inner-row-md-min-height: $fp-main-inner-row-min-height;
+$fp-main-inner-row-min-height-max: $fp-main-inner-row-md-min-height;
 
-$main-inner-row-max-height-min: calc(100vh - (#{$main-padding-min} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
-$main-inner-row-max-height: calc(100vh - (#{$main-padding} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
-$main-inner-row-md-max-height: calc(100vh - (#{$main-md-padding} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
-$main-inner-row-max-height-max: calc(100vh - (#{$main-padding-max} * 2) - (#{$main-outer-row-height} * 2) - (#{$main-row-gap} * 2));
+$fp-main-inner-row-max-height-min: calc(100vh - (#{$fp-main-padding-min} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
+$fp-main-inner-row-max-height: calc(100vh - (#{$fp-main-padding} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
+$fp-main-inner-row-md-max-height: calc(100vh - (#{$fp-main-md-padding} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
+$fp-main-inner-row-max-height-max: calc(100vh - (#{$fp-main-padding-max} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
+
+// Music overview
+$mo-main-padding-min: rem(32px);
+$mo-main-padding: 10vw;
+$mo-main-md-padding: 7.5vw;
+$mo-main-padding-max: rem(108px);

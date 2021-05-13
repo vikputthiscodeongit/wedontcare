@@ -12,8 +12,8 @@ $theme-colors: (
 
 
 // Body
-$body-bg:                   $black;
-$body-color:                $white;
+$body-bg:                   $primary;
+$body-color:                $secondary;
 
 
 // Links
@@ -23,26 +23,29 @@ $link-hover-color:                        $link-color;
 $link-hover-decoration:                   currentColor solid underline;
 
 
-// Grid breakpoints
 $grid-breakpoints: (
-    xxs: 0,
-    xs: rem(375px),
+    xxxs: 0,
+    xxs: rem(375px),
+    xs: rem(480px),
     sm: rem(568px),
     md: rem(768px),
     lg: rem(992px),
     xl: rem(1200px),
-    xxl: rem(1920px)
+    xxl: rem(1440px),
+    xxxl: rem(1920px)
 );
 
 
 // Grid containers
 $container-max-widths: (
+    xxs: rem(448px),
     xs: rem(448px),
     sm: rem(540px),
     md: rem(720px),
     lg: rem(960px),
     xl: rem(1140px),
-    xxl: rem(1280px)
+    xxl: rem(1200px),
+    xxxl: rem(1280px)
 );
 
 
@@ -53,3 +56,18 @@ $transition-base:             0.1s linear;
 // Typography
 $font-family-sans-serif:      "Rockwell", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-family-monospace:       "Courier New", monospace;
+$font-family-base:            $font-family-sans-serif !default;
+
+$font-size-base:              rem(16px);
+
+$font-weight-normal:          400 !default;
+
+$font-weight-base:            $font-weight-normal !default;
+$line-height-base:            1.5 !default;
+
+$h1-font-size:                $font-size-base;
+
+$headings-margin-bottom:      0;
+$headings-font-family:        $font-family-base;
+$headings-font-weight:        $font-weight-base;
+$headings-line-height:        $line-height-base;

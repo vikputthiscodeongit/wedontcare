@@ -22,13 +22,15 @@ import "../scss/style.scss";
 
 
     //
-    const mainEl = document.querySelector("main");
+    const htmlEl = document.querySelector("html"),
+          mainEl = document.querySelector("main");
 
 
     // Event handlers
     document.addEventListener("DOMContentLoaded", function() {
-        inputDeviceDetector();
+        htmlEl.className = htmlEl.className.replace("no-js", "js");
 
+        inputDeviceDetector();
 
         logo.init();
     });

@@ -1,0 +1,14 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.media {
+    position: relative;
+    filter: grayscale(1);
+    transition: filter 1s ease-out;
+
+    &:hover {
+        filter: none;
+    }
+}

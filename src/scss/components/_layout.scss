@@ -1,28 +1,28 @@
-main {
+.front-page main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: $main-outer-row-height minmax(#{$main-inner-row-min-height}, #{$main-inner-row-max-height}) $main-outer-row-height;
-    grid-row-gap: $main-row-gap;
+    grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height}, #{$fp-main-inner-row-max-height}) $fp-main-outer-row-height;
+    grid-row-gap: $fp-main-row-gap;
     align-items: center;
     justify-content: center;
     max-width: rem(1920px);
     margin-left: auto;
     margin-right: auto;
-    padding: $main-padding;
+    padding: $fp-main-padding;
 
     @media (max-width: $body-min-width - rem(0.02px)) {
-        grid-template-rows: $main-outer-row-height minmax(#{$main-inner-row-min-height-min}, #{$main-inner-row-max-height-min}) $main-outer-row-height;
-        padding: $main-padding-min;
+        grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height-min}, #{$fp-main-inner-row-max-height-min}) $fp-main-outer-row-height;
+        padding: $fp-main-padding-min;
     }
 
     @include respond-above(md) {
-        grid-template-rows: $main-outer-row-height minmax(#{$main-inner-row-md-min-height}, #{$main-inner-row-md-max-height}) $main-outer-row-height;
-        padding: $main-md-padding;
+        grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-md-min-height}, #{$fp-main-inner-row-md-max-height}) $fp-main-outer-row-height;
+        padding: $fp-main-md-padding;
     }
 
-    @include respond-above(xxl) {
-        grid-template-rows: $main-outer-row-height minmax(#{$main-inner-row-min-height-max}, #{$main-inner-row-max-height-max}) $main-outer-row-height;
-        padding: $main-padding-max;
+    @include respond-above(xxxl) {
+        grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height-max}, #{$fp-main-inner-row-max-height-max}) $fp-main-outer-row-height;
+        padding: $fp-main-padding-max;
     }
 
     > .nav-item {
@@ -68,6 +68,81 @@ main {
 
         > #form-mailing {
             grid-row: 3;
+        }
+    }
+}
+
+.music-overview main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: rem(1440px);
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $mo-main-padding;
+
+    @include only-ie {
+        min-height: none;
+        height: 100vh;
+    }
+
+    @media (max-width: $body-min-width - rem(0.02px)) {
+        padding: $mo-main-padding-min;
+    }
+
+    @include respond-above(md) {
+        justify-content: space-between;
+        padding: $mo-main-md-padding;
+    }
+
+    @include respond-above(xxl) {
+        padding: $mo-main-padding-max;
+    }
+
+    > .box {
+        flex-basis: 100%;
+        max-width: rem(320px);
+        margin-bottom: rem(40px);
+
+        @include respond-above(xxs) {
+            max-width: rem(360px);
+        }
+
+        @include respond-above(md) {
+            flex-basis: calc(33.333333% - #{rem(25px)});
+            margin-bottom: 0;
+        }
+
+        @include respond-above(lg) {
+            flex-basis: calc(33.333333% - #{rem(40px)});
+        }
+
+        @include respond-above(xl) {
+            flex-basis: calc(33.333333% - #{rem(60px)});
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &--tm {
+            @include respond-above(md) {
+                order: 2;
+            }
+        }
+
+        &--lncn {
+            @include respond-above(md) {
+                order: 1;
+            }
+        }
+
+        &--b4tm {
+            @include respond-above(md) {
+                order: 0;
+            }
         }
     }
 }
