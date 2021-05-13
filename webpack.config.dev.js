@@ -35,8 +35,8 @@ module.exports = {
                 to: "favicon"
             },
             {
-                from: "media",
-                to: "media",
+                from: "images",
+                to: "images",
                 ignore: ["compiled/**/*"]
             }
         ])

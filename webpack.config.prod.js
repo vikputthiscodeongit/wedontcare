@@ -34,8 +34,8 @@ module.exports = {
                 to: ""
             },
             {
-                from: "favicon",
-                to: "favicon"
+                from: "images",
+                to: "images"
             },
             {
                 from: "media",
