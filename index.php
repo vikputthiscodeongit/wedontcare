@@ -42,10 +42,10 @@
         </span>
     </div>
 
-    <form class="form form--width-small" id="form-mailing">
+    <form action="mailing-signup" class="form form--width-small" id="form-mailing">
         <div class="form__field form__field--inline-send">
             <label class="form__label sr-only" for="mailing-email">Enter your email to stay up to date</label>
-            <input class="form__input" type="mailing-email" name="mailing-email" id="mailing-email" placeholder="Enter your email to stay up to date">
+            <input class="form__input" type="mailing-email" name="email" id="mailing-email" placeholder="Enter your email to stay up to date" minlength="4" maxlength="256">
             <button class="form__submit btn" type="submit">Sign up</button>
         </div>
     </form>
