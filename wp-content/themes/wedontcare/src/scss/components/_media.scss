@@ -1,0 +1,20 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.media {
+    position: relative;
+
+    &--filter {
+        transition: filter 1s ease-out;
+
+        &:hover {
+            filter: none;
+        }
+
+        &-grayscale {
+            filter: grayscale(1);
+        }
+    }
+}

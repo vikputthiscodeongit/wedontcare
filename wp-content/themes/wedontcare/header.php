@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
     <head>
         <!-- Character set -->
         <meta charset="utf-8">
@@ -21,12 +21,7 @@
         <meta name="keywords" content="We Don't Care Productions">
 
         <!-- Site assets -->
-        <?php
-            $style_version = date("Ymd_His", filemtime("dist/css/style.css"));
-            $script_version = date("Ymd_His", filemtime("dist/js/bundle-main.js"));
-        ?>
-        <link rel="stylesheet" type="text/css" href="/dist/css/style.css?ver=<?php echo $style_version; ?>">
-        <script src="/dist/js/bundle-main.js?ver=<?php echo $script_version; ?>" defer></script>
+        <?php wp_head(); ?>
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="/dist/favicon/apple-touch-icon.png">
@@ -38,5 +33,5 @@
         <meta name="theme-color" content="#000000">
     </head>
 
-    <body>
+    <body <?php body_class(); ?>>
         <main>
