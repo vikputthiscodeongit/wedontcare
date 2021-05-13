@@ -9,25 +9,16 @@
 
 .text {
     &--flashy {
-        color: red;
         animation: color-change 2s infinite;
     }
 }
 
 @keyframes color-change {
     0% {
-        color: red;
-    }
-
-    25% {
-        color: yellow;
+        color: $secondary;
     }
 
     50% {
-        color: blue;
-    }
-
-    75% {
-        color: green;
+        color: red;
     }
 }
