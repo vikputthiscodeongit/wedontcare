@@ -1,11 +1,10 @@
 <?php include "header.php"; ?>
 
 <div class="nav-item">
-    <a class="nav-link text text--flashy" href="https://shop.wedontcaregroup.com" target="_self">Webshop</a>
+    <a class="nav-link text text--flashy" href="https://www.wedontca.re/the-madness" target="_self">The Madness!</a>
 </div>
 
 <div class="nav-item">
-    <a class="nav-link" id="nav-link-latest" href="https://latest.wedontcaregroup.com" target="_self">Latest</a>
 
     <div
         class="rollout"
@@ -19,6 +18,7 @@
         <!-- <p>Ut mauris neque, sagittis a ullamcorper quis, pellentesque dapibus ante.</p> -->
         <p>Ut mauris neque, sagittis.</p>
     </div>
+    <a class="nav-link" id="nav-link-latest" href="https://www.wedontca.re/music" target="_self">Music</a>
 </div>
 
 <div class="nav-item">
