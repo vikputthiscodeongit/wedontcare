@@ -67,33 +67,44 @@ import "../scss/style.scss";
     logo.sizeFixer = function() {
         console.log("In logo.sizeFixer().");
 
-        const contentEl = logo.el.parentElement;
+        const contentEl = logo.el.closest(".content");
+        const containerEl = contentEl.closest(".container");
 
-        if (!contentEl)
+        if (!contentEl || !containerEl)
             return;
 
         const mainWidth       = pxToNo(cssValue(mainEl, "width")),
               mainPaddingLeft = pxToNo(cssValue(mainEl, "padding-left"));
-        // console.log(mainWidth);
-        // console.log(mainPaddingLeft);
+        console.log(mainWidth);
+        console.log(mainPaddingLeft);
 
-        const mainContentRowHeight = pxToNo(cssValue(mainEl, "grid-template-rows").split(" ")[1]);
-        // console.log(mainContentRowHeight);
+        const contentRowHeight = pxToNo(cssValue(containerEl, "grid-template-rows").split(" ")[1]);
+        console.log(contentRowHeight);
 
         const contentRowTopHeight = pxToNo(cssValue(contentEl, "grid-template-rows").split(" ")[0]),
               contentRowGap       = pxToNo(cssValue(contentEl, "grid-row-gap"));
-        // console.log(contentRowTopHeight);
-        // console.log(contentRowGap);
+        console.log(contentRowTopHeight);
+        console.log(contentRowGap);
+
+        //
+        // Bij het volgende blok code moet wat gebeuren
+        //
 
         const contentMaxWidth  = mainWidth - (mainPaddingLeft * 2),
-              contentMaxHeight = mainContentRowHeight - (contentRowTopHeight * 2) - (contentRowGap * 2);
-        // console.log("contentMaxWidth: " + contentMaxWidth);
-        // console.log("contentMaxHeight: " + contentMaxHeight);
+              contentMaxHeight = contentRowHeight - (contentRowTopHeight * 2) - (contentRowGap * 2);
+        console.log("contentMaxWidth: " + contentMaxWidth);
+        console.log("contentMaxHeight: " + contentMaxHeight);
 
         const logoTargetWidth = Math.min(contentMaxWidth, contentMaxHeight) > 600
             ? 600
             : Math.min(contentMaxWidth, contentMaxHeight);
         console.log("logoTargetWidth: " + logoTargetWidth);
+
+
+        //
+        // AFRONDEN INDIEN VH > 1080 PX!
+        //
+
 
         logo.el.style.width = logoTargetWidth + "px";
     };

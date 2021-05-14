@@ -1,4 +1,13 @@
 main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .page-template-tpl-landing &,
+    .page-template-tpl-music-overview & {
+        min-height: 100vh;
+    }
+
     .page-template-tpl-landing & {
         padding: $fp-main-padding;
 
@@ -10,13 +19,12 @@ main {
             padding: $fp-main-md-padding;
         }
 
-        @include respond-above(xxxl) {
+        @include respond-above(xxl) {
             padding: $fp-main-padding-max;
         }
     }
 
-    .page-template-tpl-music-overview &,
-    .single-audio_collection & {
+    .page-template-tpl-music-overview & {
         padding: $mo-main-padding;
 
         @media (max-width: $body-min-width - rem(0.02px)) {
@@ -31,12 +39,25 @@ main {
             padding: $mo-main-padding-max;
         }
     }
+
+    .single-music & {
+        padding: $ms-main-padding;
+
+        @media (max-width: $body-min-width - rem(0.02px)) {
+            padding: $ms-main-padding-min;
+        }
+
+        @include respond-above(md) {
+            padding: $ms-main-md-padding;
+        }
+
+        @include respond-above(xxl) {
+            padding: $ms-main-padding-max;
+        }
+    }
 }
 
 .container {
-    margin-left: auto;
-    margin-right: auto;
-
     &--flex {
         display: flex;
         flex-wrap: wrap;
@@ -57,27 +78,35 @@ main {
         }
     }
 
+    main > & {
+        flex-shrink: 0;
+        flex-basis: 100%;
+    }
+
+    .page-template-tpl-landing main > &,
+    .page-template-tpl-music-overview main > & {
+        max-width: rem(1440px);
+    }
+
     .page-template-tpl-landing main > & {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height}, #{$fp-main-inner-row-max-height}) $fp-main-outer-row-height;
         grid-row-gap: $fp-main-row-gap;
-        max-width: rem(1920px);
+        max-height: rem(1080px);
 
         @media (max-width: $body-min-width - rem(0.02px)) {
-            grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height-min}, #{$fp-main-inner-row-max-height-min}) $fp-main-outer-row-height;
+            grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height}, #{$fp-main-inner-row-max-height-min}) $fp-main-outer-row-height;
         }
 
         @include respond-above(md) {
-            grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-md-min-height}, #{$fp-main-inner-row-md-max-height}) $fp-main-outer-row-height;
+            grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height}, #{$fp-main-inner-row-md-max-height}) $fp-main-outer-row-height;
         }
 
-        @include respond-above(xxxl) {
-            grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height-max}, #{$fp-main-inner-row-max-height-max}) $fp-main-outer-row-height;
+        @include respond-above(xxl) {
+            grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height}, #{$fp-main-inner-row-max-height-max}) $fp-main-outer-row-height;
         }
 
         > .nav-item {
-            position: relative;
-
             &:nth-child(1),
             &:nth-child(2) {
                 grid-row: 1 / span 1;
@@ -122,16 +151,19 @@ main {
         }
     }
 
-    .page-template-tpl-music-overview main > &,
-    .single-audio_collection main > & {
-        max-width: rem(1440px);
-    }
-
     .page-template-tpl-music-overview main > & {
         min-height: calc(100vh - (2 * #{$mo-main-padding}));
 
+        @media (max-width: $body-min-width - rem(0.02px)) {
+            min-height: calc(100vh - (2 * #{$mo-main-padding-min}));
+        }
+
         @include respond-above(md) {
             min-height: calc(100vh - (2 * #{$mo-main-md-padding}));
+        }
+
+        @include respond-above(xxl) {
+            min-height: calc(100vh - (2 * #{$mo-main-padding-max}));
         }
 
         > .box {
@@ -155,23 +187,30 @@ main {
         }
     }
 
-    .single-audio_collection main > & {
-        max-height: calc(#{rem(1080px)} - (2 * #{$mo-main-padding}));
-        min-height: calc(#{rem(540px)} - (2 * #{$mo-main-padding}));
-        height: calc(100vh - (2 * #{$mo-main-padding}));
+    .single-music main > & {
+        max-width: rem(1200px);
+        // min-height: calc(100vh - (2 * #{$ms-main-padding}));
 
-        @media (max-width: $body-min-width - rem(0.02px)) {
-            min-height: calc(#{rem(540px)} - (2 * #{$mo-main-padding-min}));
+        // @media (max-width: $body-min-width - rem(0.02px)) {
+        //     min-height: calc(100vh - (2 * #{$ms-main-padding-min}));
+        // }
+
+        @include respond-below(md) {
+            grid-row-gap: rem(40px);
         }
 
         @include respond-above(md) {
-            max-height: calc(#{rem(1080px)} - (2 * #{$mo-main-md-padding}));
-            min-height: calc(#{rem(540px)} - (2 * #{$mo-main-md-padding}));
-            height: calc(100vh - (2 * #{$mo-main-md-padding}));
+            grid-template-columns: 0.6fr 0.4fr;
+            grid-column-gap: rem(50px);
+            min-height: calc(100vh - (2 * #{$ms-main-padding-md-y}));
+        }
+
+        @include respond-above(xl) {
+            grid-column-gap: rem(80px);
         }
 
         @include respond-above(xxl) {
-            max-height: calc(#{rem(1080px)} - (2 * #{$mo-main-padding-max}));
+            min-height: calc(100vh - (2 * #{$ms-main-padding-y-max}));
         }
 
         > .media {
@@ -193,14 +232,6 @@ main {
             }
         }
     }
-
-    // .single-audio_collection main > & {
-    //     > .box {
-    //         @include respond-above(md) {
-    //             max-height: rem(640px);
-    //         }
-    //     }
-    // }
 }
 
 .box {
@@ -234,20 +265,6 @@ main {
 
             @include respond-above(xl) {
                 flex-basis: calc(33.333333% - #{rem(60px)});
-            }
-        }
-
-        &-8 {
-            @include respond-above(md) {
-                flex-basis: calc(66.666666% - #{rem(25px)});
-            }
-
-            @include respond-above(lg) {
-                flex-basis: calc(66.666666% - #{rem(40px)});
-            }
-
-            @include respond-above(xl) {
-                flex-basis: calc(66.666666% - #{rem(60px)});
             }
         }
     }

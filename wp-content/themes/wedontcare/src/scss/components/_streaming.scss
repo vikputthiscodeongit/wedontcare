@@ -1,0 +1,44 @@
+.streaming {
+    background-color: rgba(51, 48, 41, 0.5);
+
+    .single-music & {
+        @include respond-below(md) {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    &__top {
+        margin-bottom: rem(32px);
+        padding: rem(24px);
+    }
+
+    &__logo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.service {
+    &s {
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+
+    padding: rem(8px) rem(16px);
+    list-style: none;
+    background-color: $secondary;
+    box-shadow: inset 0 rem(-2px) rem(8px) 0 rgba(0, 0, 0, 0.06);;
+    transition: background-color $transition-base;
+
+    &:hover {
+        background-color: $gray-200;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}

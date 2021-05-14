@@ -23,11 +23,9 @@
 
     <section class="content">
         <div class="spinning-logo">
-            <div class="aspect-ratio aspect-ratio--square" aria-hidden="true">
-                <div class="content">
-                    <video poster="https://via.placeholder.com/600x400">Your browser sucks and does not support awesomeness.</video>
-                </div>
-            </div>
+            <video poster="https://via.placeholder.com/600x400">
+                Your browser sucks and does not support awesomeness.
+            </video>
 
             <span class="sr-only">
                 We Don't Care

@@ -4,8 +4,6 @@ img {
 }
 
 .media {
-    position: relative;
-
     &--filter {
         transition: filter 1s ease-out;
 
@@ -15,6 +13,34 @@ img {
 
         &-grayscale {
             filter: grayscale(1);
+        }
+    }
+
+    .single-music & {
+        position: relative;
+        align-self: flex-start;
+        background-color: #333029;
+
+        @include respond-below(md) {
+            position: sticky;
+            top: 0;
+        }
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 1px;
+            height: 0;
+            padding-bottom: 100%;
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            object-fit: contain;
+            transform: translate(-50%, -50%);
         }
     }
 }

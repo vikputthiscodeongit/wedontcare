@@ -2,12 +2,10 @@
     //
     // Define constants
     define("THEME_DIR", get_template_directory_uri());
-    define("THEME_ROOT", get_template_directory());
 
 
     // Post types
-    include "cpts/cpt-audio-collection.php";
-    include "cpts/cpt-audio-single.php";
+    include "cpts/cpt-music.php";
 
 
     //
@@ -96,11 +94,11 @@
 
 
     //
-    // Remove attributes from (get_)the_post_thumbnail output
-    function remove_post_thumbnail_attr ($html) {
-        return preg_replace("/(width|height|loading)=(\"|\')[A-Za-z0-9]+(\"|\')\s/", "", $html);
-    }
-    add_filter("post_thumbnail_html", "remove_post_thumbnail_attr");
+    // Remove size attributes from (get_)the_post_thumbnail output
+    // function remove_post_thumbnail_attr ($html) {
+    //     return preg_replace("/(width|height)=(\"|\')[A-Za-z0-9]+(\"|\')\s/", "", $html);
+    // }
+    // add_filter("post_thumbnail_html", "remove_post_thumbnail_attr");
 
 
     //
