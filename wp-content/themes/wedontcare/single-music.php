@@ -38,23 +38,34 @@
                     <ul class="services">
                         <?php
                             foreach ($services as $service => $url) {
-                                $logo_file_name = str_replace("_", "-", $service);
-                                var_dump($logo_file_name);
-                                // $fileSearch = "God_of_War";
-                                // $files = glob("/path/*" . $fileSearch . "*");
+                                // URL
+                                if (empty($url))
+                                    continue;
 
-                                // if(count($files) > 0) echo "File Exists!";
+                                var_dump($url);
 
+                                // Name
                                 $name_pretty = str_replace("_", " ", $service);
                                 $name_pretty = ucwords($name_pretty);
 
                                 if ($name_pretty === "Youtube")
                                     $name_pretty = "YouTube";
 
-                                var_dump($name_pretty, $url);
+                                var_dump($name_pretty);
 
-                                if (empty($url))
-                                    continue;
+                                // Logo
+                                $logo_file_name = str_replace("_", "-", $service);
+                                var_dump($logo_file_name);
+
+                                $fileSearch = "God_of_War";
+                                $files = glob("/path/*" . $fileSearch . "*");
+
+                                if(count($files) > 0) echo "File Exists!";
+
+                                $search_for = $logo_file_name;
+                                $files = glob("/path/*" . $logo_file_name . "*");
+
+                                if(count($files) > 0) echo "File Exists!";
                                 ?>
                                 <li class="service">
                                     <a class="service__link" href="#" target="_blank" rel="noopener">
