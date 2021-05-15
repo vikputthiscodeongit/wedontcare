@@ -20,7 +20,7 @@
 
         <!-- Site information -->
         <meta name="description" content="WE DON'T CARE">
-        <meta name="keywords" content="">
+        <meta name="keywords" content="We Don't Care Group, Grown George">
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="<?php echo THEME_DIR; ?>/dist/favicon/apple-touch-icon.png">

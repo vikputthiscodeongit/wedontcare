@@ -20,9 +20,17 @@ import "../scss/style.scss";
         return Number(string.slice(0, -2));
     }
 
+    // Valide an email address against the RFC 5322 specification. See also https://stackoverflow.com/a/201378/6396604 & https://emailregex.com/.
+    function isValidEmail(address) {
+        const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+
+        return regEx.test(address);
+    }
+
 
     //
     const htmlEl = document.querySelector("html"),
+          bodyEl = document.body,
           mainEl = document.querySelector("main");
 
 
@@ -33,6 +41,10 @@ import "../scss/style.scss";
         inputDeviceDetector();
 
         logo.init();
+
+        video.init();
+
+        wpcf7.init();
     });
 
 
@@ -65,40 +77,43 @@ import "../scss/style.scss";
     logo.el = document.querySelector(".spinning-logo");
 
     logo.sizeFixer = function() {
-        console.log("In logo.sizeFixer().");
+        const videoEl = logo.el.querySelector("video");
 
-        const contentEl = logo.el.closest(".content");
-        const containerEl = contentEl.closest(".container");
+        if (!videoEl)
+            return;
 
-        if (!contentEl || !containerEl)
+        const parentEl = logo.el.parentNode;
+
+        if (!parentEl || (cssValue(parentEl, "display") !== "grid"))
+            return;
+
+        const containerEl = parentEl.closest(".container");
+
+        if (!containerEl)
             return;
 
         const mainWidth       = pxToNo(cssValue(mainEl, "width")),
               mainPaddingLeft = pxToNo(cssValue(mainEl, "padding-left"));
-        console.log(mainWidth);
-        console.log(mainPaddingLeft);
+        // console.log(mainWidth);
+        // console.log(mainPaddingLeft);
 
         const contentRowHeight = pxToNo(cssValue(containerEl, "grid-template-rows").split(" ")[1]);
-        console.log(contentRowHeight);
+        // console.log(contentRowHeight);
 
-        const contentRowTopHeight = pxToNo(cssValue(contentEl, "grid-template-rows").split(" ")[0]),
-              contentRowGap       = pxToNo(cssValue(contentEl, "grid-row-gap"));
-        console.log(contentRowTopHeight);
-        console.log(contentRowGap);
-
-        //
-        // Bij het volgende blok code moet wat gebeuren
-        //
+        const contentRowTopHeight = pxToNo(cssValue(parentEl, "grid-template-rows").split(" ")[0]),
+              contentRowGap       = pxToNo(cssValue(parentEl, "grid-row-gap"));
+        // console.log(contentRowTopHeight);
+        // console.log(contentRowGap);
 
         const contentMaxWidth  = mainWidth - (mainPaddingLeft * 2),
               contentMaxHeight = contentRowHeight - (contentRowTopHeight * 2) - (contentRowGap * 2);
-        console.log("contentMaxWidth: " + contentMaxWidth);
-        console.log("contentMaxHeight: " + contentMaxHeight);
+        // console.log("contentMaxWidth: " + contentMaxWidth);
+        // console.log("contentMaxHeight: " + contentMaxHeight);
 
         const logoTargetWidth = Math.min(contentMaxWidth, contentMaxHeight) > 600
             ? 600
             : Math.min(contentMaxWidth, contentMaxHeight);
-        console.log("logoTargetWidth: " + logoTargetWidth);
+        // console.log("logoTargetWidth: " + logoTargetWidth);
 
 
         //
@@ -106,6 +121,139 @@ import "../scss/style.scss";
         //
 
 
-        logo.el.style.width = logoTargetWidth + "px";
+        videoEl.style.width = logoTargetWidth + "px";
+    };
+
+
+    // Video
+    let video = {};
+
+    video.init = function() {
+        const targetVideoArr = [...document.querySelectorAll(".video[autoplay]")];
+
+        if (targetVideoArr.length === 0)
+            return;
+
+        targetVideoArr.forEach((videoEl) => {
+            video.removeControls(videoEl);
+        });
+    };
+
+    video.removeControls = function(targetVideo) {
+        targetVideo.removeAttribute("controls");
+    };
+
+
+    // Contact Form 7
+    let wpcf7 = {
+        init: function() {
+            const wpcf7Els = document.querySelectorAll(".wpcf7");
+
+            if (wpcf7Els.length === 0)
+                return;
+
+            wpcf7Els.forEach(function(wpcf7El) {
+                wpcf7El.classList.add("form");
+
+                if (bodyEl.classList.contains("page-template-tpl-landing")) {
+                    if (logo.el) {
+                        wpcf7El.classList.add("form--width-small");
+                        wpcf7El.setAttribute("id", "form-mailing");
+                    }
+                }
+
+                const wpcf7Form    = wpcf7El.querySelector(".wpcf7-form"),
+                      submitButton = wpcf7Form.querySelector("[type='submit']"),
+                      inlineSubmitWrapper = wpcf7Form.querySelector(".form__field--inline-send");
+
+                if (inlineSubmitWrapper) {
+                    const inputWrapper = inlineSubmitWrapper.querySelector(".wpcf7-form-control-wrap"),
+                          input        = inputWrapper.querySelector("input");
+
+                    let submitStatusEl = document.createElement("span");
+                    submitStatusEl.className = "wpcf7-submit-status";
+
+                    input.parentNode.insertBefore(submitStatusEl, input.nextElementSibling);
+
+                    submitStatusEl = inputWrapper.querySelector(".wpcf7-submit-status");
+
+                    wpcf7El.addEventListener("wpcf7beforesubmit", function() {
+                        submitStatusEl.textContent = "Submitting...";
+                    });
+
+                    wpcf7El.addEventListener("wpcf7submit", function(e) {
+                        let timeout = 0;
+
+                        if (e.detail.apiResponse.status === "mail_sent") {
+                            timeout = 2000;
+
+                            submitStatusEl.textContent = "Success!";
+                        }
+
+                        setTimeout(function() {
+                            submitStatusEl.textContent = "";
+                        }, timeout);
+                    });
+                }
+
+                wpcf7El.addEventListener("wpcf7beforesubmit", function() {
+                    submitButton.setAttribute("disabled", true);
+                });
+
+                wpcf7El.addEventListener("wpcf7submit", function() {
+                    setTimeout(function() {
+                        submitButton.removeAttribute("disabled");
+                    }, 2000);
+                });
+
+
+                // SET TIP WIDTH AS FORM FIELD WIDTH
+
+
+                // Its <input>s
+                const inputs = wpcf7Form.querySelectorAll(".form__input");
+
+                inputs.forEach(function(input) {
+                    if (
+                        input.classList.contains("wpcf7-validates-as-required") &&
+                        // input.value isn't necessarily always empty on form initialization, Firefox for example retains <input> values when a page is refreshed.
+                        input.value === ""
+                    ) {
+                        wpcf7.setInvalidState(input);
+                    }
+
+                    input.addEventListener("input", function() {
+                        wpcf7.inputValidator(input);
+                    });
+                });
+            });
+        },
+
+        inputValidator: function(input) {
+            const type = input.getAttribute("type");
+
+            if (
+                (type === "email" && isValidEmail(input.value)) ||
+                (type !== "email" && input.value !== "")
+            ) {
+                wpcf7.unsetInvalidState(input);
+            } else {
+                wpcf7.setInvalidState(input);
+            }
+        },
+
+        setInvalidState: function(input) {
+            input.parentElement.classList.remove("is-valid");
+
+            input.setAttribute("aria-invalid", true);
+            input.parentElement.classList.add("is-invalid");
+        },
+
+        unsetInvalidState: function(input) {
+            input.setAttribute("aria-invalid", false);
+            input.parentElement.classList.remove("is-invalid");
+
+            input.parentElement.classList.add("is-valid");
+        }
     };
 })();

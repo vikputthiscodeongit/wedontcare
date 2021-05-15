@@ -6,39 +6,73 @@
 
 <div class="container container--grid container--center">
     <div class="nav-item">
-        <a class="nav-link text text--flashy" href="https://www.wedontca.re/the-madness" target="_self">The Madness!</a>
+        <a class="nav-link text text--flashy" href="<?php echo get_site_url(); ?>/music/the-madness/" target="_self">The Madness!</a>
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" id="nav-link-latest" href="https://www.wedontca.re/music" target="_self">Music</a>
+        <a class="nav-link" id="nav-link-latest" href="<?php echo get_site_url(); ?>/music" target="_self">Music</a>
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" href="#" target="_blank" rel="noopener">YouTube</a>
+        <a class="nav-link" href="https://www.youtube.com/channel/UCpj7LYWgu-L0JvmcjKiRCvQ" target="_blank" rel="noopener">YouTube</a>
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" href="#" target="_blank" rel="noopener">Instagram</a>
+        <a class="nav-link" href="https://www.instagram.com/growngeorge/" target="_blank" rel="noopener">Instagram</a>
     </div>
 
+    <?php
+        $content = get_field("landing_content");
+        // var_dump($content);
+    ?>
     <section class="content">
-        <div class="spinning-logo">
-            <video poster="https://via.placeholder.com/600x400">
-                Your browser sucks and does not support awesomeness.
-            </video>
+        <?php
+            if (!empty($content)) {
+                $video = $content["video"];
 
-            <span class="sr-only">
-                We Don't Care
-            </span>
-        </div>
+                $video_sources = $video["source"];
 
-        <form action="mailing-signup" class="form form--width-small" id="form-mailing">
-            <div class="form__field form__field--inline-send">
-                <label class="form__label sr-only" for="mailing-email">Enter your email to stay up to date</label>
-                <input class="form__input" type="mailing-email" name="email" id="mailing-email" placeholder="Enter your email to stay up to date" minlength="4" maxlength="256">
-                <button class="form__submit btn" type="submit">Sign up</button>
-            </div>
-        </form>
+                if (count($video_sources) > 0) {
+                ?>
+                <div class="spinning-logo">
+                    <video
+                        class="video"
+                        autoplay
+                        controls
+                        disablePictureInPicture
+                        loop
+                        muted
+                        playsinline
+                    >
+                        <?php
+                            foreach ($video_sources as $source) {
+                                $file = $source["file"];
+                                // var_dump($file);
+
+                                $file_src = $file["url"];
+                                $file_type = $file["mime_type"];
+                                ?>
+                                <source src="<?php echo $file_src; ?>" type="<?php echo $file_type; ?>">
+                                <?php
+                            }
+                        ?>
+
+                        Your browser sucks and does not support awesomeness.
+                    </video>
+
+                    <span class="sr-only">
+                        We Don't Care
+                    </span>
+                </div>
+                <?php
+                }
+            }
+        ?>
+
+        <?php
+            // Check before doing it
+            echo do_shortcode('[contact-form-7 id="102" title="Mailing sign up"]');
+        ?>
     </section>
 </div>
 

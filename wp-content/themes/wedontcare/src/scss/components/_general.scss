@@ -2,8 +2,9 @@ body {
     min-width: $body-min-width;
     letter-spacing: rem(1px);
     text-size-adjust: 100%;
-    // text-transform: uppercase;
+    text-transform: uppercase;
 
+    &.bg-light,
     &.page-template-tpl-music-overview {
         color: $primary;
         background-color: $secondary;
@@ -31,7 +32,7 @@ a {
 }
 
 .background {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     z-index: -1;

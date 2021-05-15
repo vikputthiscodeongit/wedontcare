@@ -34,12 +34,12 @@ module.exports = {
                 to: ""
             },
             {
-                from: "images",
-                to: "images"
+                from: "favicon",
+                to: "favicon"
             },
             {
-                from: "media",
-                to: "media",
+                from: "images",
+                to: "images",
                 ignore: ["compiled/**/*"]
             }
         ])

@@ -4,6 +4,8 @@ img {
 }
 
 .media {
+    position: relative;
+
     &--filter {
         transition: filter 1s ease-out;
 
@@ -16,14 +18,25 @@ img {
         }
     }
 
+    .page-template-tpl-music-overview & {
+        > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
     .single-music & {
-        position: relative;
         align-self: flex-start;
         background-color: #333029;
 
-        @include respond-below(md) {
+        @include respond-below(lg) {
             position: sticky;
-            top: 0;
+            top: $ms-main-padding-y;
+
+            @include respond-above(md) {
+                top: $ms-main-padding-md-y;
+            }
         }
 
         &::before {
@@ -39,7 +52,7 @@ img {
             top: 50%;
             left: 50%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             transform: translate(-50%, -50%);
         }
     }

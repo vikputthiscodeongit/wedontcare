@@ -16,6 +16,7 @@
 
     &__field {
         &--inline-send {
+            position: relative;
             display: flex;
         }
     }
@@ -27,22 +28,6 @@
         font-family: Arial, sans-serif;
         border: none;
         border-radius: 0;
-    }
-
-    &__input {
-        padding: 0 rem(6px);
-        font-size: rem(10px);
-        outline: none;
-        transition: outline $transition-base;
-
-        @include respond-above(md) {
-            font-size: rem(12px);
-        }
-
-        &:focus {
-            outline: $primary solid rem(2px);
-            outline-offset: rem(-3px);
-        }
 
         .form__field--inline-send & {
             flex-grow: 1;
@@ -50,9 +35,23 @@
         }
     }
 
+    &__input {
+        padding: 0 rem(6px);
+        font-size: rem(10px);
+        outline: transparent solid rem(2px);
+        outline-offset: rem(-3px);
+        transition: outline-color $transition-base;
+
+        @include respond-above(md) {
+            font-size: rem(12px);
+        }
+
+        &:focus {
+            outline-color: $primary;
+        }
+    }
+
     &__submit {
-        display: flex;
-        align-items: center;
         padding: 0 rem(6px);
         white-space: nowrap;
         font-size: rem(10px);
@@ -69,7 +68,32 @@
         }
 
         .form__field--inline-send & {
-            flex-grow: 1;
+            line-height: rem(24px);
         }
+    }
+}
+
+.wpcf7 {
+    &-text {
+        display: block;
+
+        form.invalid .is-invalid &[aria-invalid="true"] {
+            outline-color: red;
+        }
+
+        ~ span {
+            position: absolute;
+            margin-top: rem(4px);
+        }
+    }
+
+    &-submit + .ajax-loader {
+        .form__field--inline-send & {
+            display: none;
+        }
+    }
+
+    &-response-output {
+        display: none;
     }
 }

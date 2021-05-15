@@ -70,6 +70,9 @@
                                     } else {
                                         $versions = ["color", "black", "white"];
 
+                                        //
+                                        // Dit moet echt beter. Lelijk én werkt niet.
+                                        //
                                         foreach ($logo_versions as $logo_version) {
                                             if (strpos($logo_version, $versions[0]) !== false) {
                                                 $logo = get_theme_file_uri($dir . basename($logo_version));
@@ -121,7 +124,7 @@
 
     <?php
         $bg = $attrs["bg"];
-        $bg = wp_get_attachment_image($bg["ID"], "full");
+        $bg = wp_get_attachment_image($bg["ID"], "full", false, array("loading" => false));
         // var_dump($bg);
     ?>
     <div class="background">

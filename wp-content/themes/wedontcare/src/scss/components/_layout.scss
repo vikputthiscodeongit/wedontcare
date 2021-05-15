@@ -98,7 +98,7 @@ main {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height}, #{$fp-main-inner-row-max-height}) $fp-main-outer-row-height;
         grid-row-gap: $fp-main-row-gap;
-        max-height: rem(1080px);
+        // max-height: rem(1080px);
 
         @media (max-width: $body-min-width - rem(0.02px)) {
             grid-template-rows: $fp-main-outer-row-height minmax(#{$fp-main-inner-row-min-height}, #{$fp-main-inner-row-max-height-min}) $fp-main-outer-row-height;

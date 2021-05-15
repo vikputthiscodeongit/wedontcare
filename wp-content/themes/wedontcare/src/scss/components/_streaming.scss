@@ -1,5 +1,5 @@
 .streaming {
-    background-color: rgba(51, 48, 41, 0.8);
+    background-color: rgba(51, 48, 41, 0.85);
 
     @include respond-above(lg) {
         background-color: rgba(51, 48, 41, 0.5);
