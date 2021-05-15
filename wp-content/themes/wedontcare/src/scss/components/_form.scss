@@ -30,7 +30,6 @@
         border-radius: 0;
 
         .form__field--inline-send & {
-            flex-grow: 1;
             height: rem(24px);
         }
     }
@@ -74,6 +73,12 @@
 }
 
 .wpcf7 {
+    &-form-control-wrap {
+        .form__field--inline-send & {
+            flex-grow: 1;
+        }
+    }
+
     &-text {
         display: block;
 
