@@ -1,22 +1,42 @@
 .streaming {
-    background-color: rgba(51, 48, 41, 0.5);
+    background-color: rgba(51, 48, 41, 0.8);
+
+    @include respond-above(lg) {
+        background-color: rgba(51, 48, 41, 0.5);
+    }
 
     .single-music & {
-        @include respond-below(md) {
+        @include respond-below(lg) {
             position: relative;
             z-index: 1;
         }
     }
 
     &__top {
-        margin-bottom: rem(32px);
-        padding: rem(24px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: rem(24px) rem(32px);
+
+        @include respond-above(sm) {
+            padding: rem(40px);
+        }
+
+        @include respond-above(xl) {
+            padding: rem(60px);
+        }
     }
 
     &__logo {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: rem(240px);
+
+        @include respond-above(sm) {
+            max-width: rem(280px);
+        }
+
+        @include respond-above(xl) {
+            max-width: rem(320px);
+        }
     }
 }
 
@@ -37,8 +57,47 @@
     }
 
     &__link {
+        position: relative;
         display: flex;
         justify-content: center;
         width: 100%;
+        height: rem(60px);
+
+        @media (min-width: rem(768px)),
+               (min-height: rem(640px)) {
+            height: rem(80px);
+        }
+    }
+
+    &__logo {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > img {
+            max-width: rem(210px);
+            max-height: rem(30px);
+
+            @media (min-width: rem(768px)),
+                   (min-height: rem(640px)) {
+                max-width: rem(240px);
+                max-height: rem(40px);
+            }
+        }
+    }
+
+    &__name {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        color: $primary;
+        transform: translate(-50%, -50%);
+
+        &.is-visible {
+            opacity: 1;
+        }
     }
 }

@@ -2,9 +2,11 @@
     get_header();
 
     $attrs = get_field("music_attrs");
+
+    $id = $attrs["id"];
 ?>
 
-<div class="container container--grid">
+<div class="container container--grid container--lg-x-center">
     <?php
         $artwork = get_the_post_thumbnail($post->ID, "full", array("loading" => false));
         // var_dump($artwork);
@@ -30,7 +32,7 @@
 
         <?php
             $services = get_field("music_streaming_services");
-            var_dump($services);
+            // var_dump($services);
 
             if (!empty($services)) {
                 ?>
@@ -42,7 +44,7 @@
                                 if (empty($url))
                                     continue;
 
-                                var_dump($url);
+                                // var_dump($url);
 
                                 // Name
                                 $name_pretty = str_replace("_", " ", $service);
@@ -51,30 +53,59 @@
                                 if ($name_pretty === "Youtube")
                                     $name_pretty = "YouTube";
 
-                                var_dump($name_pretty);
+                                // var_dump($name_pretty);
 
                                 // Logo
-                                $logo_file_name = str_replace("_", "-", $service);
-                                var_dump($logo_file_name);
+                                $logo = false;
 
-                                $fileSearch = "God_of_War";
-                                $files = glob("/path/*" . $fileSearch . "*");
+                                $base_dir = trailingslashit(get_template_directory());
+                                $dir      = "dist/images/static/streaming/";
+                                $pattern  = str_replace("_", "-", $service);
+                                $logo_versions = glob($base_dir . $dir . $pattern . "*");
+                                // var_dump($logo_versions);
 
-                                if(count($files) > 0) echo "File Exists!";
+                                if (count($logo_versions) > 0) {
+                                    if (count($logo_versions) === 1) {
+                                        $logo = get_theme_file_uri($dir . basename($logo_versions[0]));
+                                    } else {
+                                        $versions = ["color", "black", "white"];
 
-                                $search_for = $logo_file_name;
-                                $files = glob("/path/*" . $logo_file_name . "*");
+                                        foreach ($logo_versions as $logo_version) {
+                                            if (strpos($logo_version, $versions[0]) !== false) {
+                                                $logo = get_theme_file_uri($dir . basename($logo_version));
 
-                                if(count($files) > 0) echo "File Exists!";
+                                                break;
+                                            } else if (strpos($logo_version, $versions[1]) !== false) {
+                                                $logo = get_theme_file_uri($dir . basename($logo_version));
+
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // var_dump($logo);
                                 ?>
                                 <li class="service">
-                                    <a class="service__link" href="#" target="_blank" rel="noopener">
-                                        <div class="service__logo">
-                                            <img src="https://via.placeholder.com/240x60" alt="">
-                                        </div>
+                                    <a class="service__link" href="<?php echo $url; ?>" target="_blank" rel="noopener">
+                                        <?php
+                                            if ($logo) {
+                                                ?>
+                                                <div class="service__logo">
+                                                    <img src="<?php echo $logo; ?>" alt="">
+                                                </div>
+                                                <?php
+                                            }
+                                        ?>
 
-                                        <div class="service__name sr-only">
-                                            <span>Streaming service</span>
+                                        <?php
+                                            $classes = "service__name";
+
+                                            if (!$logo)
+                                                $classes += " is-visible";
+                                        ?>
+                                        <div class="<?php echo $classes; ?>">
+                                            <span><?php echo $name_pretty; ?></span>
                                         </div>
                                     </a>
                                 </li>
@@ -93,6 +124,9 @@
         $bg = wp_get_attachment_image($bg["ID"], "full");
         // var_dump($bg);
     ?>
+    <div class="background">
+        <?php echo $bg; ?>
+    </div>
 </div>
 
 <?php get_footer(); ?>
