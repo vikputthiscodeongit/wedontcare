@@ -23,11 +23,12 @@
                     $attrs = get_field("music_attrs");
                     // var_dump($attrs);
 
-                    if (empty($attrs["id"])) {
+                    $id = $attrs["id"];
+
+                    if (empty($id)) {
                         continue;
                     }
 
-                    $id = $attrs["id"];
                     $artwork = get_the_post_thumbnail($post->ID, "medium");
                     $link = get_permalink();
                     // var_dump($id, $artwork, $link);
