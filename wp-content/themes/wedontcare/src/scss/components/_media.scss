@@ -33,6 +33,7 @@ img {
         @include respond-below(lg) {
             position: sticky;
             top: $ms-main-padding-y;
+            z-index: 0;
 
             @include respond-above(md) {
                 top: $ms-main-padding-md-y;
