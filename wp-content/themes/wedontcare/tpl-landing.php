@@ -30,6 +30,7 @@
             if (!empty($content)) {
                 $video = $content["video"];
 
+                $video_poster = $video["poster"]["sizes"]["medium"];
                 $video_sources = $video["source"];
 
                 if (count($video_sources) > 0) {
@@ -37,6 +38,7 @@
                 <div class="spinning-logo">
                     <video
                         class="video"
+                        poster="<?php echo $video_poster; ?>"
                         autoplay
                         controls
                         disablePictureInPicture
