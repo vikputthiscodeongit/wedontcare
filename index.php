@@ -1,31 +1,17 @@
-<?php include "header.php"; ?>
+<?php
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
 
-<div class="nav-item">
-  <a class="nav-link" href="https://shop.wedontcaregroup.com" target="_self">Webshop</a>
-</div>
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define( 'WP_USE_THEMES', true );
 
-<div class="nav-item">
-  <a class="nav-link" href="https://latest.wedontcaregroup.com" target="_self">Latest</a>
-</div>
-
-<div class="nav-item">
-  <a class="nav-link" href="#" target="_blank">YouTube</a>
-</div>
-
-<div class="nav-item">
-  <a class="nav-link" href="#" target="_blank">Instagram</a>
-</div>
-
-<div class="spinning-logo">
-  <div class="aspect-ratio aspect-ratio--square" aria-hidden="true">
-    <div class="content">
-      <video>Your browser sucks and does not support awesomeness.</video>
-    </div>
-  </div>
-
-  <span class="sr-only">
-    We Don't Care
-  </span>
-</div>
-
-<?php include "footer.php"; ?>
+/** Loads the WordPress Environment and Template */
+require __DIR__ . '/wp-blog-header.php';

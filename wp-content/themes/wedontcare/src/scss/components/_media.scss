@@ -1,0 +1,59 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.media {
+    position: relative;
+
+    &--filter {
+        transition: filter 1s ease-out;
+
+        &:hover {
+            filter: none;
+        }
+
+        &-grayscale {
+            filter: grayscale(1);
+        }
+    }
+
+    .page-template-tpl-music-overview & {
+        > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .single-music & {
+        align-self: flex-start;
+        background-color: #333029;
+
+        @include respond-below(lg) {
+            position: sticky;
+            top: $ms-main-padding-y;
+
+            @include respond-above(md) {
+                top: $ms-main-padding-md-y;
+            }
+        }
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 1px;
+            height: 0;
+            padding-bottom: 100%;
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+        }
+    }
+}

@@ -1,0 +1,24 @@
+@font-face {
+    src: local("Rockwell"),
+         url("../fonts/rockwell/rockwell-regular.ttf") format("truetype");
+    font-family: "Rockwell";
+    font-display: swap;
+    font-style: normal;
+    font-weight: $font-weight-base;
+}
+
+.text {
+    &--flashy {
+        animation: color-change 2s infinite;
+    }
+}
+
+@keyframes color-change {
+    0% {
+        color: $secondary;
+    }
+
+    50% {
+        color: red;
+    }
+}

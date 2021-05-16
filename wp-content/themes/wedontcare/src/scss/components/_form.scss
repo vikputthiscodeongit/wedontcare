@@ -1,0 +1,104 @@
+.form {
+    width: 100%;
+
+    &--width-small {
+        max-width: rem(300px);
+
+        @include respond-above(md) {
+            max-width: rem(340px);
+        }
+    }
+
+    &__field,
+    &__input {
+        width: 100%;
+    }
+
+    &__field {
+        &--inline-send {
+            position: relative;
+            display: flex;
+        }
+    }
+
+    &__submit,
+    &__input {
+        text-transform: uppercase;
+        line-height: 1.25;
+        font-family: Arial, sans-serif;
+        border: none;
+        border-radius: 0;
+
+        .form__field--inline-send & {
+            height: rem(24px);
+        }
+    }
+
+    &__input {
+        padding: 0 rem(6px);
+        font-size: rem(10px);
+        outline: transparent solid rem(2px);
+        outline-offset: rem(-3px);
+        transition: outline-color $transition-base;
+
+        @include respond-above(md) {
+            font-size: rem(12px);
+        }
+
+        &:focus {
+            outline-color: $primary;
+        }
+    }
+
+    &__submit {
+        padding: 0 rem(6px);
+        white-space: nowrap;
+        font-size: rem(10px);
+        background-color: $gray-400;
+        outline: none;
+        transition: background-color $transition-base;
+
+        @include respond-above(md) {
+            font-size: rem(11px);
+        }
+
+        &:focus {
+            background-color: $gray-600;
+        }
+
+        .form__field--inline-send & {
+            line-height: rem(24px);
+        }
+    }
+}
+
+.wpcf7 {
+    &-form-control-wrap {
+        .form__field--inline-send & {
+            flex-grow: 1;
+        }
+    }
+
+    &-text {
+        display: block;
+
+        form.invalid .is-invalid &[aria-invalid="true"] {
+            outline-color: red;
+        }
+
+        ~ span {
+            position: absolute;
+            margin-top: rem(4px);
+        }
+    }
+
+    &-submit + .ajax-loader {
+        .form__field--inline-send & {
+            display: none;
+        }
+    }
+
+    &-response-output {
+        display: none;
+    }
+}

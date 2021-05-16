@@ -1,0 +1,32 @@
+// Re-define Bootstrap's breakpoint-max function to make the respond-below & respond-between mixins more intuitive.
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+    $max: map-get($breakpoints, $name);
+
+    @return if($max != 0, $max - 0.02, null);
+}
+
+@mixin respond-below($name, $breakpoints: $grid-breakpoints) {
+    @include media-breakpoint-down($name, $breakpoints) {
+        @content;
+    }
+}
+
+@mixin respond-above($name, $breakpoints: $grid-breakpoints) {
+    @include media-breakpoint-up($name, $breakpoints) {
+        @content;
+    }
+}
+
+@mixin respond-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+    @include media-breakpoint-between($lower, $upper, $breakpoints) {
+        @content;
+    }
+}
+
+@mixin respond-only($name, $breakpoints: $grid-breakpoints) {
+    $width: breakpoint-min($name, $breakpoints);
+
+    @media (width: $width) {
+        @content;
+    }
+}
