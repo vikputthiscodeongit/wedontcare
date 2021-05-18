@@ -5,7 +5,7 @@ main {
 
     .page-template-tpl-landing &,
     .page-template-tpl-music-overview & {
-        min-height: 100vh;
+        min-height: fill-available;
     }
 
     .page-template-tpl-landing & {
