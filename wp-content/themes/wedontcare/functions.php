@@ -159,3 +159,15 @@
         }
         add_filter("script_loader_tag", "add_async_defer_attribute", 10, 2);
     }
+
+
+    //
+    // Grant users with editor role access to Flamingo submissions
+    add_filter("flamingo_map_meta_cap", function($meta_caps) {
+        $meta_caps = array_merge($meta_caps, array(
+            "flamingo_edit_inbound_message" => "edit_pages",
+            "flamingo_edit_inbound_messages" => "edit_pages"
+        ));
+
+        return $meta_caps;
+    });
