@@ -10,7 +10,7 @@
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" id="nav-link-latest" href="<?php echo get_site_url(); ?>/music" target="_self">Music</a>
+        <a class="nav-link" href="<?php echo get_site_url(); ?>/music" target="_self">Music</a>
     </div>
 
     <div class="nav-item">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" href="https://www.instagram.com/growngeorge/" target="_blank" rel="noopener">Instagram</a>
+        <a class="nav-link" href="<?php echo get_site_url(); ?>/shows" target="_self">Shows</a>
     </div>
 
     <?php

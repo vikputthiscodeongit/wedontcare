@@ -4,7 +4,8 @@ main {
     justify-content: center;
 
     .page-template-tpl-landing &,
-    .page-template-tpl-music-overview & {
+    .page-template-tpl-music-overview &,
+    .page-template-tpl-shows & {
         min-height: fill-available;
     }
 
@@ -24,7 +25,8 @@ main {
         }
     }
 
-    .page-template-tpl-music-overview & {
+    .page-template-tpl-music-overview &,
+    .page-template-tpl-shows & {
         padding: $mo-main-padding;
 
         @media (max-width: $body-min-width - rem(0.02px)) {
@@ -68,6 +70,7 @@ main {
     }
 
     &--center {
+        align-content: center;
         align-items: center;
         justify-content: center;
     }
@@ -90,7 +93,8 @@ main {
     }
 
     .page-template-tpl-landing main > &,
-    .page-template-tpl-music-overview main > & {
+    .page-template-tpl-music-overview main > &,
+    .page-template-tpl-shows main > & {
         max-width: rem(1440px);
     }
 
@@ -157,7 +161,8 @@ main {
         }
     }
 
-    .page-template-tpl-music-overview main > & {
+    .page-template-tpl-music-overview main > &,
+    .page-template-tpl-shows main > & {
         min-height: calc(100vh - (2 * #{$mo-main-padding}));
 
         @media (max-width: $body-min-width - rem(0.02px)) {
