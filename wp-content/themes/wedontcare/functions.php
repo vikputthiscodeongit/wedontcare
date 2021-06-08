@@ -173,3 +173,17 @@
 
         return $meta_caps;
     });
+
+
+    //
+    // Only load WPCF7 assets when needed
+    add_filter("wpcf7_load_css", "__return_false");
+    add_filter("wpcf7_load_js", "__return_false");
+
+    function load_wpcf7_scripts() {
+        if (is_page_template("tpl-landing.php")) {
+            wpcf7_enqueue_styles();
+            wpcf7_enqueue_scripts();
+        }
+    }
+    add_action("wp_enqueue_scripts", "load_wpcf7_scripts");
