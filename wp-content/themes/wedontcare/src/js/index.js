@@ -56,6 +56,8 @@ import stylesheet from "../scss/style.scss";
         video.init();
 
         wpcf7.init();
+
+        tabindex.init();
     });
 
 
