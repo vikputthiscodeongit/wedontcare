@@ -39,15 +39,9 @@ import stylesheet from "../scss/style.scss";
     }
 
 
-    //
-    const htmlEl = document.querySelector("html"),
-          bodyEl = document.body,
-          mainEl = document.querySelector("main");
-
-
     // Event handlers
     document.addEventListener("DOMContentLoaded", function() {
-        htmlEl.className = htmlEl.className.replace("no-js", "js");
+        document.documentElement.classList.replace("no-js", "js");
 
         inputDeviceDetector();
 
@@ -65,6 +59,8 @@ import stylesheet from "../scss/style.scss";
 
     // Input devices
     function inputDeviceDetector() {
+        // console.log("In inputDeviceDetector().");
+
         document.body.addEventListener("mousedown", function() {
             document.body.classList.add("using-mouse");
         });
@@ -199,121 +195,154 @@ import stylesheet from "../scss/style.scss";
     let video = {};
 
     video.init = function() {
-        const targetVideoArr = [...document.querySelectorAll(".video[autoplay]")];
+        const videoEls = document.querySelectorAll(".video");
 
-        if (targetVideoArr.length === 0)
+        if (videoEls.length === 0)
             return;
 
-        targetVideoArr.forEach((videoEl) => {
+        videoEls.forEach((videoEl) => {
+            if (!videoEl.hasAttribute("autoplay")) {
+                return;
+            }
+
             video.removeControls(videoEl);
         });
     };
 
     video.removeControls = function(targetVideo) {
+        // console.log("In video.removeControls().");
+
         targetVideo.removeAttribute("controls");
     };
 
 
     // Contact Form 7
-    let wpcf7 = {
-        init: function() {
-            const wpcf7Els = document.querySelectorAll(".wpcf7");
+    let wpcf7 = {};
 
-            if (wpcf7Els.length === 0)
-                return;
+    wpcf7.init = function() {
+        const wpcf7Els = document.querySelectorAll(".wpcf7");
 
-            wpcf7Els.forEach(function(wpcf7El) {
-                wpcf7El.classList.add("form");
+        if (wpcf7Els.length === 0)
+            return;
 
-                if (bodyEl.classList.contains("page-template-tpl-landing")) {
-                    if (logo.el) {
-                        wpcf7El.classList.add("form--width-small");
-                        wpcf7El.setAttribute("id", "form-mailing");
-                    }
+        wpcf7Els.forEach((wpcf7El) => {
+            wpcf7.changeAttributes(wpcf7El);
+
+            wpcf7.statusEl(wpcf7El);
+
+            const inputs = wpcf7El.querySelectorAll(".wpcf7-form .form__input");
+
+            inputs.forEach((input) => {
+                if (
+                    input.classList.contains("wpcf7-validates-as-required") &&
+                    // input.value isn't necessarily always empty on form initialization, Firefox for example retains <input> values when a page is refreshed.
+                    input.value === ""
+                ) {
+                    wpcf7.setInvalidState(input);
                 }
 
-                const wpcf7Form    = wpcf7El.querySelector(".wpcf7-form"),
-                      submitButton = wpcf7Form.querySelector("[type='submit']"),
-                      inlineSubmitWrapper = wpcf7Form.querySelector(".form__field--inline-send");
-
-                if (inlineSubmitWrapper) {
-                    const inputWrapper = inlineSubmitWrapper.querySelector(".wpcf7-form-control-wrap"),
-                          input        = inputWrapper.querySelector("input");
-
-                    let submitStatusEl = document.createElement("span");
-                    submitStatusEl.className = "wpcf7-submit-status";
-
-                    input.parentNode.insertBefore(submitStatusEl, input.nextElementSibling);
-
-                    submitStatusEl = inputWrapper.querySelector(".wpcf7-submit-status");
-
-                    wpcf7El.addEventListener("wpcf7beforesubmit", function() {
-                        submitStatusEl.textContent = "Submitting...";
-                    });
-
-                    wpcf7El.addEventListener("wpcf7submit", function(e) {
-                        let timeout = 0;
-
-                        if (e.detail.apiResponse.status === "mail_sent") {
-                            timeout = 2000;
-
-                            submitStatusEl.textContent = "Success!";
-                        }
-
-                        setTimeout(function() {
-                            submitStatusEl.textContent = "";
-                        }, timeout);
-                    });
-                }
-
-                wpcf7El.addEventListener("wpcf7beforesubmit", function() {
-                    submitButton.setAttribute("disabled", true);
-                });
-
-                wpcf7El.addEventListener("wpcf7submit", function() {
-                    setTimeout(function() {
-                        submitButton.removeAttribute("disabled");
-                    }, 2000);
-                });
-
-
-                // SET TIP WIDTH AS FORM FIELD WIDTH
-
-
-                // Its <input>s
-                const inputs = wpcf7Form.querySelectorAll(".form__input");
-
-                inputs.forEach(function(input) {
-                    if (
-                        input.classList.contains("wpcf7-validates-as-required") &&
-                        // input.value isn't necessarily always empty on form initialization, Firefox for example retains <input> values when a page is refreshed.
-                        input.value === ""
-                    ) {
-                        wpcf7.setInvalidState(input);
-                    }
-
-                    input.addEventListener("input", function() {
-                        wpcf7.inputValidator(input);
-                    });
+                input.addEventListener("input", function() {
+                    wpcf7.inputValidator(input);
                 });
             });
-        },
+        });
+    };
 
-        inputValidator: function(input) {
-            const type = input.getAttribute("type");
+    wpcf7.changeAttributes = function(wpcf7El) {
+        // console.log("In wpcf7.changeAttributes().");
 
-            if (
-                (type === "email" && isValidEmail(input.value)) ||
-                (type !== "email" && input.value !== "")
-            ) {
-                wpcf7.unsetInvalidState(input);
-            } else {
-                wpcf7.setInvalidState(input);
+        wpcf7El.classList.add("form");
+
+        if (document.body.classList.contains("page-template-tpl-landing")) {
+            if (spinningLogo.el) {
+                wpcf7El.classList.add("form--width-small");
+                wpcf7El.setAttribute("id", "form-mailing");
             }
-        },
+        }
+    };
 
-        setInvalidState: function(input) {
-            input.parentElement.classList.remove("is-valid");
+    wpcf7.statusEl = function(wpcf7El) {
+        // console.log("In wpcf7.statusEl().");
+
+        const wpcf7Form    = wpcf7El.querySelector(".wpcf7-form"),
+              submitButton = wpcf7Form.querySelector("[type='submit']"),
+              inlineSubmitWrapper = wpcf7Form.querySelector(".form__field--inline-send");
+
+        if (!inlineSubmitWrapper) {
+            return;
+        }
+
+        const inputWrapper = inlineSubmitWrapper.querySelector(".wpcf7-form-control-wrap"),
+              input        = inputWrapper.querySelector("input");
+
+        let submitStatusEl = document.createElement("span");
+        submitStatusEl.className = "wpcf7-submit-status";
+
+        input.parentNode.insertBefore(submitStatusEl, input.nextElementSibling);
+
+        submitStatusEl = inputWrapper.querySelector(".wpcf7-submit-status");
+
+        wpcf7El.addEventListener("wpcf7beforesubmit", function() {
+            submitStatusEl.textContent = "Submitting...";
+        });
+
+        wpcf7El.addEventListener("wpcf7submit", function(e) {
+            let timeout = 0;
+
+            if (e.detail.apiResponse.status === "mail_sent") {
+                timeout = 2000;
+
+                submitStatusEl.textContent = "Success!";
+            }
+
+            setTimeout(function() {
+                submitStatusEl.textContent = "";
+            }, timeout);
+        });
+
+        wpcf7El.addEventListener("wpcf7beforesubmit", function() {
+            submitButton.setAttribute("disabled", true);
+        });
+
+        wpcf7El.addEventListener("wpcf7submit", function() {
+            setTimeout(function() {
+                submitButton.removeAttribute("disabled");
+            }, 2000);
+        });
+    };
+
+    wpcf7.inputValidator = function(input) {
+        // console.log("In wpcf7.inputValidator().");
+
+        const type = input.getAttribute("type");
+
+        if (
+            (type === "email" && isValidEmail(input.value)) ||
+            (type !== "email" && input.value !== "")
+        ) {
+            wpcf7.unsetInvalidState(input);
+        } else {
+            wpcf7.setInvalidState(input);
+        }
+    };
+
+    wpcf7.setInvalidState = function(input) {
+        // console.log("In wpcf7.setInvalidState().");
+
+        input.parentElement.classList.remove("is-valid");
+
+        input.setAttribute("aria-invalid", true);
+        input.parentElement.classList.add("is-invalid");
+    };
+
+    wpcf7.unsetInvalidState = function(input) {
+        // console.log("In wpcf7.unsetInvalidState().");
+
+        input.setAttribute("aria-invalid", false);
+        input.parentElement.classList.remove("is-invalid");
+
+        input.parentElement.classList.add("is-valid");
+    };
 
 
     // Music overview - .box link tabindex
@@ -322,9 +351,6 @@ import stylesheet from "../scss/style.scss";
     tabindex.init = function() {
         const musicOverview = document.body.classList.contains("page-template-tpl-music-overview");
 
-            input.setAttribute("aria-invalid", true);
-            input.parentElement.classList.add("is-invalid");
-        },
         if (!musicOverview)
             return;
 
@@ -335,12 +361,8 @@ import stylesheet from "../scss/style.scss";
         }, 25));
     };
 
-        unsetInvalidState: function(input) {
-            input.setAttribute("aria-invalid", false);
-            input.parentElement.classList.remove("is-invalid");
     tabindex.links = document.querySelectorAll(".box .stretched-link");
 
-            input.parentElement.classList.add("is-valid");
     tabindex.fixOrder = function() {
         if (aboveBreakpoint("md")) {
             tabindex.links.forEach((link) => {

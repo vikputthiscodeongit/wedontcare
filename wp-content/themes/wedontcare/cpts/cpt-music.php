@@ -11,11 +11,9 @@
                 "show_in_rest" => true,
                 "supports"     => array(
                     "title",
-                    "editor",
                     "thumbnail"
                 ),
                 "rewrite"      => array(
-                    "slug"       => "music",
                     "with_front" => false
                 )
             )

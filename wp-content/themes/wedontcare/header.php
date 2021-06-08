@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
-        <!-- Character set -->
         <meta charset="utf-8">
 
         <!--
@@ -12,7 +11,6 @@
 
         -->
 
-        <!-- Viewport scaling -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Site assets -->
