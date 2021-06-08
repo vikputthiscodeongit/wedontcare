@@ -6,11 +6,11 @@
 
 <div class="container container--grid container--center">
     <div class="nav-item">
-        <a class="nav-link text text--flashy" href="<?php echo get_site_url(); ?>/music/the-madness/" target="_self">The Madness!</a>
+        <a class="nav-link text text--flashy" href="<?php echo SITE_URL; ?>/music/the-madness/" target="_self">The Madness!</a>
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" href="<?php echo get_site_url(); ?>/music" target="_self">Music</a>
+        <a class="nav-link" href="<?php echo SITE_URL; ?>/music/" target="_self">Music</a>
     </div>
 
     <div class="nav-item">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" href="<?php echo get_site_url(); ?>/shows" target="_self">Shows</a>
+        <a class="nav-link" href="<?php echo SITE_URL; ?>/shows/" target="_self">Shows</a>
     </div>
 
     <?php
