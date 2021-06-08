@@ -71,3 +71,9 @@ $headings-margin-bottom:      0;
 $headings-font-family:        $font-family-base;
 $headings-font-weight:        $font-weight-base;
 $headings-line-height:        $line-height-base;
+
+
+// Variable export to JavaScript
+:export {
+    mdBreakpoint: map-get($grid-breakpoints, md);
+}

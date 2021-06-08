@@ -63,7 +63,9 @@
         }
 
         &:focus {
-            background-color: $gray-600;
+            &:not([disabled]) {
+                background-color: $gray-500;
+            }
         }
 
         .form__field--inline-send & {

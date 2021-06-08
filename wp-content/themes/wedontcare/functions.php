@@ -3,10 +3,12 @@
     // Define constants
     define("THEME_DIR", get_template_directory_uri());
     define("THEME_DIR_PATH", get_template_directory());
+    define("SITE_URL", get_site_url());
 
 
     // Post types
     include "cpts/cpt-music.php";
+    include "cpts/cpt-show.php";
 
 
     //
@@ -159,3 +161,30 @@
         }
         add_filter("script_loader_tag", "add_async_defer_attribute", 10, 2);
     }
+
+
+    //
+    // Grant users with editor role access to Flamingo submissions
+    function change_flamingo_user_rights($meta_caps) {
+        $meta_caps = array_merge($meta_caps, array(
+            "flamingo_edit_inbound_message" => "edit_pages",
+            "flamingo_edit_inbound_messages" => "edit_pages"
+        ));
+
+        return $meta_caps;
+    }
+    add_filter("flamingo_map_meta_cap", "change_flamingo_user_rights");
+
+
+    //
+    // Only load WPCF7 assets when needed
+    add_filter("wpcf7_load_css", "__return_false");
+    add_filter("wpcf7_load_js", "__return_false");
+
+    function load_wpcf7_scripts() {
+        if (is_page_template("tpl-landing.php")) {
+            wpcf7_enqueue_styles();
+            wpcf7_enqueue_scripts();
+        }
+    }
+    add_action("wp_enqueue_scripts", "load_wpcf7_scripts");
