@@ -72,7 +72,6 @@
         ?>
 
         <?php
-            // Check before doing it
             echo do_shortcode('[contact-form-7 id="102" title="Mailing sign up"]');
         ?>
     </section>
