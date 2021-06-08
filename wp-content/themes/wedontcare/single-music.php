@@ -48,10 +48,19 @@
 
                                 // Name
                                 $name_pretty = str_replace("_", " ", $service);
-                                $name_pretty = ucwords($name_pretty);
 
-                                if ($name_pretty === "Youtube")
-                                    $name_pretty = "YouTube";
+                                switch ($name_pretty) {
+                                    case "soundcloud":
+                                        $name_pretty = "SoundCloud";
+
+                                        break;
+                                    case "youtube":
+                                        $name_pretty = "YouTube";
+
+                                        break;
+                                    default:
+                                        $name_pretty = ucwords($name_pretty);
+                                }
 
                                 // var_dump($name_pretty);
 
