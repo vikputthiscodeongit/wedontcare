@@ -58,7 +58,7 @@
                                 // Logo
                                 $logo = false;
 
-                                $base_dir = trailingslashit(get_template_directory());
+                                $base_dir = trailingslashit(THEME_DIR_PATH);
                                 $dir      = "dist/images/static/streaming/";
                                 $pattern  = str_replace("_", "-", $service);
                                 $logo_versions = glob($base_dir . $dir . $pattern . "*");
@@ -68,20 +68,18 @@
                                     if (count($logo_versions) === 1) {
                                         $logo = get_theme_file_uri($dir . basename($logo_versions[0]));
                                     } else {
-                                        $versions = ["color", "black", "white"];
+                                        $colors = ["color", "black", "white"];
 
-                                        //
-                                        // Dit moet echt beter. Lelijk én werkt niet.
-                                        //
-                                        foreach ($logo_versions as $logo_version) {
-                                            if (strpos($logo_version, $versions[0]) !== false) {
-                                                $logo = get_theme_file_uri($dir . basename($logo_version));
-
+                                        foreach ($colors as $color) {
+                                            if ($logo)
                                                 break;
-                                            } else if (strpos($logo_version, $versions[1]) !== false) {
-                                                $logo = get_theme_file_uri($dir . basename($logo_version));
 
-                                                break;
+                                            foreach ($logo_versions as $logo_version) {
+                                                if ($logo)
+                                                    break;
+
+                                                if (strpos($logo_version, $color))
+                                                    $logo = get_theme_file_uri($dir . basename($logo_version));
                                             }
                                         }
                                     }
