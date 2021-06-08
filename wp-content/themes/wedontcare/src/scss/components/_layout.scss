@@ -3,11 +3,11 @@ main {
     align-items: center;
     justify-content: center;
 
-    .page-template-tpl-landing &,
-    .page-template-tpl-music-overview &,
-    .page-template-tpl-shows & {
-        min-height: fill-available;
-    }
+    // .page-template-tpl-landing &,
+    // .page-template-tpl-music-overview &,
+    // .page-template-tpl-shows & {
+    //     min-height: fill-available;
+    // }
 
     .page-template-tpl-landing & {
         padding: $fp-main-padding;
@@ -163,19 +163,19 @@ main {
 
     .page-template-tpl-music-overview main > &,
     .page-template-tpl-shows main > & {
-        min-height: calc(100vh - (2 * #{$mo-main-padding}));
+        // min-height: calc(100vh - (2 * #{$mo-main-padding}));
 
-        @media (max-width: $body-min-width - rem(0.02px)) {
-            min-height: calc(100vh - (2 * #{$mo-main-padding-min}));
-        }
+        // @media (max-width: $body-min-width - rem(0.02px)) {
+        //     min-height: calc(100vh - (2 * #{$mo-main-padding-min}));
+        // }
 
-        @include respond-above(md) {
-            min-height: calc(100vh - (2 * #{$mo-main-md-padding}));
-        }
+        // @include respond-above(md) {
+        //     min-height: calc(100vh - (2 * #{$mo-main-md-padding}));
+        // }
 
-        @include respond-above(xxl) {
-            min-height: calc(100vh - (2 * #{$mo-main-padding-max}));
-        }
+        // @include respond-above(xxl) {
+        //     min-height: calc(100vh - (2 * #{$mo-main-padding-max}));
+        // }
 
         > .box {
             &--tm {

@@ -1,5 +1,10 @@
+html {
+    height: fill-available;
+}
+
 body {
     min-width: $body-min-width;
+    // min-height: fill-available;
     letter-spacing: rem(1px);
     text-size-adjust: 100%;
     text-transform: uppercase;

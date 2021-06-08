@@ -51,7 +51,9 @@ import stylesheet from "../scss/style.scss";
 
         inputDeviceDetector();
 
-        logo.init();
+        main.init();
+
+        spinningLogo.init();
 
         video.init();
 
@@ -73,29 +75,54 @@ import stylesheet from "../scss/style.scss";
     }
 
 
-    // Spinning logo
-    let logo = {};
+    // Main
+    let main = {};
 
-    logo.init = function() {
-        if (!logo.el)
-            return;
-
-        logo.sizeFixer();
+    main.init = function() {
+        main.sizeFixer();
 
         window.addEventListener("resize", debounce(function() {
-            logo.sizeFixer();
+            main.sizeFixer();
         }, 25));
     };
 
-    logo.el = document.querySelector(".spinning-logo");
+    main.el = document.querySelector("main");
 
-    logo.sizeFixer = function() {
-        const videoEl = logo.el.querySelector("video");
+    main.sizeFixer = function() {
+        // console.log("In main.sizeFixer().");
+
+        const mainTargetHeight = document.documentElement.clientHeight;
+        // console.log(mainTargetHeight);
+
+        main.el.style.minHeight = `${mainTargetHeight}px`;
+    };
+
+
+    // Spinning logo
+    let spinningLogo = {};
+
+    spinningLogo.init = function() {
+        if (!spinningLogo.el)
+            return;
+
+        spinningLogo.sizeFixer();
+
+        window.addEventListener("resize", debounce(function() {
+            spinningLogo.sizeFixer();
+        }, 25));
+    };
+
+    spinningLogo.el = document.querySelector(".spinning-logo");
+
+    spinningLogo.sizeFixer = function() {
+        // console.log("In spinningLogo.sizeFixer().");
+
+        const videoEl = spinningLogo.el.querySelector("video");
 
         if (!videoEl)
             return;
 
-        const parentEl = logo.el.parentNode;
+        const parentEl = spinningLogo.el.parentNode;
 
         if (!parentEl || (cssValue(parentEl, "display") !== "grid"))
             return;
@@ -105,8 +132,8 @@ import stylesheet from "../scss/style.scss";
         if (!containerEl)
             return;
 
-        const mainWidth       = pxToNo(cssValue(mainEl, "width")),
-              mainPaddingLeft = pxToNo(cssValue(mainEl, "padding-left"));
+        const mainWidth       = pxToNo(cssValue(main.el, "width")),
+              mainPaddingLeft = pxToNo(cssValue(main.el, "padding-left"));
         // console.log(mainWidth);
         // console.log(mainPaddingLeft);
 
@@ -120,21 +147,51 @@ import stylesheet from "../scss/style.scss";
 
         const contentMaxWidth  = mainWidth - (mainPaddingLeft * 2),
               contentMaxHeight = contentRowHeight - (contentRowTopHeight * 2) - (contentRowGap * 2);
-        // console.log("contentMaxWidth: " + contentMaxWidth);
-        // console.log("contentMaxHeight: " + contentMaxHeight);
+        console.log(`contentMaxWidth: ${contentMaxWidth}`);
+        console.log(`contentMaxHeight: ${contentMaxHeight}`);
+
+
+        // Ugh
+        const vhVisibleBars   = document.documentElement.clientHeight,
+              vhInvisibleBars = document.body.clientHeight;
+        console.log(`Viewport height with visible bars: ${vhVisibleBars}`);
+        console.log(`Viewport height without visible bars: ${vhInvisibleBars}`);
+
+        const correctionFactor = vhInvisibleBars - vhVisibleBars;
+
+        if (correctionFactor !== 0) {
+            console.log("Correction factor is not zero!");
+
+            const targetContentRowHeight = contentRowHeight - correctionFactor;
+
+            if (targetContentRowHeight <= 320) {
+                if (containerEl.style.gridTemplateRows !== "") {
+                    containerEl.style.gridTemplateRows = "";
+                }
+            } else {
+                console.log(`.content row height should be corrected by ${correctionFactor} pixels.`);
+
+                const targetContentRowVal = `minmax(20rem, ${targetContentRowHeight}px)`,
+                      targetOuterRowsVal  = `${contentRowTopHeight}px`;
+
+                const targetGridTemplateRows = `${targetOuterRowsVal} ${targetContentRowVal} ${targetOuterRowsVal}`;
+
+                containerEl.style.gridTemplateRows = targetGridTemplateRows;
+            }
+        } else {
+            if (containerEl.style.gridTemplateRows !== "") {
+                containerEl.style.gridTemplateRows = "";
+            }
+        }
+        //
+
 
         const logoTargetWidth = Math.min(contentMaxWidth, contentMaxHeight) > 600
             ? 600
             : Math.min(contentMaxWidth, contentMaxHeight);
-        // console.log("logoTargetWidth: " + logoTargetWidth);
+        // console.log(`logoTargetWidth: ${logoTargetWidth}`);
 
-
-        //
-        // AFRONDEN INDIEN VH > 1080 PX!
-        //
-
-
-        videoEl.style.width = logoTargetWidth + "px";
+        videoEl.style.width = `${logoTargetWidth}px`;
     };
 
 
