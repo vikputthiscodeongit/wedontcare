@@ -1,6 +1,6 @@
 import debounce from "lodash/debounce";
 
-import "../scss/style.scss";
+import stylesheet from "../scss/style.scss";
 
 (function() {
     // Helpers
@@ -18,6 +18,17 @@ import "../scss/style.scss";
             return;
 
         return Number(string.slice(0, -2));
+    }
+
+    // Check if viewport is above given breakpoint
+    function aboveBreakpoint(breakpoint) {
+        const bp = `${breakpoint}Breakpoint`;
+
+        if (typeof stylesheet[bp] === "undefined") {
+            console.error("The given breakpoint either doesn't exist or hasn't been exported to JavaScript.");
+        }
+
+        return window.matchMedia(`(min-width: ${stylesheet[bp]})`).matches;
     }
 
     // Valide an email address against the RFC 5322 specification. See also https://stackoverflow.com/a/201378/6396604 & https://emailregex.com/.
@@ -245,15 +256,50 @@ import "../scss/style.scss";
         setInvalidState: function(input) {
             input.parentElement.classList.remove("is-valid");
 
+
+    // Music overview - .box link tabindex
+    let tabindex = {};
+
+    tabindex.init = function() {
+        const musicOverview = document.body.classList.contains("page-template-tpl-music-overview");
+
             input.setAttribute("aria-invalid", true);
             input.parentElement.classList.add("is-invalid");
         },
+        if (!musicOverview)
+            return;
+
+        tabindex.fixOrder();
+
+        window.addEventListener("resize", debounce(function() {
+            tabindex.fixOrder();
+        }, 25));
+    };
 
         unsetInvalidState: function(input) {
             input.setAttribute("aria-invalid", false);
             input.parentElement.classList.remove("is-invalid");
+    tabindex.links = document.querySelectorAll(".box .stretched-link");
 
             input.parentElement.classList.add("is-valid");
+    tabindex.fixOrder = function() {
+        if (aboveBreakpoint("md")) {
+            tabindex.links.forEach((link) => {
+                if (!link.hasAttribute("tabindex")) {
+                    const box      = link.closest(".box");
+                    const boxOrder = cssValue(box, "order");
+
+                    const targetTabindex = Number(boxOrder) + 1;
+
+                    link.setAttribute("tabindex", targetTabindex);
+                }
+            });
+        } else {
+            tabindex.links.forEach((link) => {
+                if (link.hasAttribute("tabindex")) {
+                    link.removeAttribute("tabindex");
+                }
+            });
         }
     };
 })();
