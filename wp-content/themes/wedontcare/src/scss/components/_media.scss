@@ -27,17 +27,14 @@ img {
     }
 
     .single-music & {
+        position: sticky;
+        top: $ms-main-padding-y;
+        z-index: 0;
         align-self: flex-start;
         background-color: #333029;
 
-        @include respond-below(lg) {
-            position: sticky;
-            top: $ms-main-padding-y;
-            z-index: 0;
-
-            @include respond-above(md) {
-                top: $ms-main-padding-md-y;
-            }
+        @include respond-above(md) {
+            top: $ms-main-padding-md-y;
         }
 
         &::before {
