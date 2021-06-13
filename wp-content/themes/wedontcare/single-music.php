@@ -80,9 +80,6 @@
                                         $colors = ["color", "black", "white"];
 
                                         foreach ($colors as $color) {
-                                            if ($logo)
-                                                break;
-
                                             foreach ($logo_versions as $logo_version) {
                                                 if ($logo)
                                                     break;
