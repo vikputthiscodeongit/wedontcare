@@ -27,6 +27,16 @@
                         $attrs = get_field("show_attrs");
                         // var_dump($attrs);
 
+                        // Date
+                        $date_show = strtotime($attrs["date"]);
+                        $date_hidden = idate("U") + 43200;
+
+                        if ($date_show < $date_hidden) {
+                            continue;
+                        }
+
+                        $date_pretty = date("d M", strtotime($attrs["date"]));
+
                         // Tag
                         $tag_open = "span class='show'";
                         $tag_close = "span";
@@ -35,14 +45,10 @@
                             $tag_open = "a class='show' href='" . $attrs["url"] . "' target='_blank' rel='noopener'";
                             $tag_close = "a";
                         }
-
-                        // Date
-                        $date_raw = $attrs["date"];
-                        $date_pretty = date("d M", strtotime($attrs["date"]));
                         ?>
                         <li class="show__item">
                             <<?php echo $tag_open; ?>>
-                                <time datetime="<?php echo $date_raw; ?>"><?php echo $date_pretty; ?></time>
+                                <time datetime="<?php echo $date_show; ?>"><?php echo $date_pretty; ?></time>
                                 <span class="seperator"> - </span>
                                 <span><?php echo $attrs["venue"]; ?></span>
                             </<?php echo $tag_close; ?>>
