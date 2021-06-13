@@ -7,6 +7,7 @@
 
 
     // Post types
+    include "cpts/cpt-entity.php";
     include "cpts/cpt-music.php";
     include "cpts/cpt-show.php";
 
