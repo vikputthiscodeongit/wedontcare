@@ -14,7 +14,7 @@
     </div>
 
     <div class="nav-item">
-        <a class="nav-link" href="https://www.youtube.com/channel/UCpj7LYWgu-L0JvmcjKiRCvQ" target="_blank" rel="noopener">YouTube</a>
+        <a class="nav-link" href="<?php echo SITE_URL; ?>/social/" target="_self">Social</a>
     </div>
 
     <div class="nav-item">
