@@ -28,19 +28,21 @@
                     $attrs = get_field("show_attrs");
                     // var_dump($attrs);
 
-                        // Date
-                        $date_show = strtotime($attrs["date"]) + 86400;
-                        $date_hidden = idate("U") + 86400 + 43200;
-                        // var_dump($date_show);
-                        // var_dump($date_hidden);
+                    // Date
+                    $date_current = idate("U");
+                    $date_show = strtotime($attrs["date"]);
+                    $date_hidden = $date_show + 86000 + 43200;
+                    // var_dump($date_current);
+                    // var_dump($date_show);
+                    // var_dump($date_hidden);
 
-                        if ($date_hidden > $date_show) {
-                            continue;
-                        }
+                    if ($date_current > $date_hidden) {
+                        continue;
+                    }
 
-                        $date_pretty = date("d M", strtotime($attrs["date"]));
                     $shows_shown = true;
 
+                    $date_pretty = date("d M", $date_show);
 
                     // Tag
                     $tag_open = "span class='show'";
