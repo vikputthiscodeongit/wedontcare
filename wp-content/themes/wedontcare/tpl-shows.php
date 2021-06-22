@@ -29,7 +29,7 @@
 
                         // Date
                         $date_show = strtotime($attrs["date"]) + 86400;
-                        $date_hidden = idate("U") + 43200;
+                        $date_hidden = idate("U") + 86400 + 43200;
                         // var_dump($date_show);
                         // var_dump($date_hidden);
 
