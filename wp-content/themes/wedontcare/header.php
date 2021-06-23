@@ -6,7 +6,7 @@
         <!--
 
         - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        - Website programmed by Viktor Chin for We Don't Care -
+        - Website hand crafted by Viktor Chin for We Don't Care -
         - - - - - - - - - - - viktorchin.nl - - - - - - - - - -
 
         -->
