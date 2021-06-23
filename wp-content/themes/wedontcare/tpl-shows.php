@@ -19,9 +19,9 @@
     ?>
     <ul class="show__list">
         <?php
-            if ($the_query->have_posts()) {
-                $shows_shown = false;
+            $shows_shown = false;
 
+            if ($the_query->have_posts()) {
                 while ($the_query->have_posts()) {
                     $the_query->the_post();
 
@@ -63,17 +63,9 @@
                     <?php
                     wp_reset_postdata();
                 }
+            }
 
-                if (!$shows_shown) {
-                    ?>
-                    <li class="show__item">
-                        <span class="show">
-                            <span>TBA</span>
-                        </span>
-                    </li>
-                    <?php
-                }
-            } else {
+            if (!$shows_shown) {
                 ?>
                 <li class="show__item">
                     <span class="show">
