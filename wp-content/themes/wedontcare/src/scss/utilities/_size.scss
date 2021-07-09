@@ -1,5 +1,3 @@
-.aspect-ratio {
-    &--square {
-        @include aspect-ratio(1, 1);
-    }
+[style*="--aspect-ratio"] {
+    @include aspect-ratio();
 }

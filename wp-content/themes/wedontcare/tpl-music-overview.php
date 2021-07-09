@@ -15,36 +15,39 @@
 
     if ($the_query->have_posts()) {
         ?>
-        <div class="container container--flex container--center container--md-x-between">
-            <?php
-                while ($the_query->have_posts()) {
-                    $the_query->the_post();
+        <div class="container container--align-center">
+            <div class="row row--space-center row--lg-align-center row--lg-direction-reverse">
+                <?php
+                    while ($the_query->have_posts()) {
+                        $the_query->the_post();
 
-                    $attrs = get_field("music_attrs");
-                    // var_dump($attrs);
+                        $attrs = get_field("music_attrs");
+                        // var_dump($attrs);
 
-                    $id = $attrs["id"];
+                        $classes = "box box--lg-4";
 
-                    if (empty($id)) {
-                        continue;
+                        $id = $attrs["id"];
+
+                        if (!empty($id))
+                            $classes .= " box--" . $id;
+
+                        $artwork = get_the_post_thumbnail($post->ID, "medium");
+                        $link = get_permalink();
+                        // var_dump($classes, $id, $artwork, $link);
+                        ?>
+                        <div class="<?php echo $classes; ?>">
+                            <div class="media media--filter media--filter-grayscale" style="--aspect-ratio: 1 / 1">
+                                <?php echo $artwork; ?>
+
+                                <a class="stretched-link" href="<?php echo $link; ?>" target="_self"></a>
+                            </div>
+                        </div>
+                        <?php
                     }
 
-                    $artwork = get_the_post_thumbnail($post->ID, "medium");
-                    $link = get_permalink();
-                    // var_dump($id, $artwork, $link);
-                    ?>
-                    <div class="box box--<?php echo $id; ?> box--md-4">
-                        <div class="media media--filter media--filter-grayscale">
-                            <?php echo $artwork; ?>
-
-                            <a class="stretched-link" href="<?php echo $link; ?>" target="_self"></a>
-                        </div>
-                    </div>
-                    <?php
-                }
-
-                wp_reset_postdata();
-            ?>
+                    wp_reset_postdata();
+                ?>
+            </div>
         </div>
         <?php
     }

@@ -98,14 +98,6 @@
 
 
     //
-    // Remove size attributes from (get_)the_post_thumbnail output
-    // function remove_post_thumbnail_attr ($html) {
-    //     return preg_replace("/(width|height)=(\"|\')[A-Za-z0-9]+(\"|\')\s/", "", $html);
-    // }
-    // add_filter("post_thumbnail_html", "remove_post_thumbnail_attr");
-
-
-    //
     // Remove links from admin bar
     function remove_admin_bar_links() {
         global $wp_admin_bar;
@@ -165,6 +157,39 @@
 
 
     //
+    // Add classes to <body>
+    function add_body_classes($classes) {
+        if (
+            is_front_page() ||
+            is_page_template("tpl-music-overview.php") ||
+            is_page_template("tpl-shows.php") ||
+            is_page_template("tpl-social.php")
+        ) {
+            $classes[] = "cover-fullvh";
+        }
+
+        if (is_front_page()) {
+            array_push($classes, "cover-fullvh--high", "covers-fullvh");
+        }
+
+        if (
+            is_page_template("tpl-music-overview.php") ||
+            is_page_template("tpl-shows.php") ||
+            is_page_template("tpl-social.php")
+        ) {
+            $classes[] = "cover-fullvh--dynamic";
+        }
+
+        if (is_page_template("tpl-music-overview.php")) {
+            $classes[] = "bg-light";
+        }
+
+        return $classes;
+    }
+    add_filter("body_class", "add_body_classes");
+
+
+    //
     // Enable ACF Options page
     if (function_exists("acf_add_options_page")) {
         acf_add_options_page();
@@ -190,7 +215,7 @@
     add_filter("wpcf7_load_js", "__return_false");
 
     function load_wpcf7_scripts() {
-        if (is_page_template("tpl-landing.php")) {
+        if (is_front_page()) {
             wpcf7_enqueue_styles();
             wpcf7_enqueue_scripts();
         }

@@ -1,41 +1,42 @@
 // Body
 $body-min-width: rem(320px);
+$body-max-width: rem(1920px);
+
 
 // Main
-// Front page
-$fp-main-padding-min: rem(16px);
-$fp-main-padding: 5vw;
-$fp-main-md-padding: 7.5vw;
-$fp-main-padding-max: rem(108px);
+$main-p-min: rem(32px);
+$main-p: 10vw;
+$main-p-max: rem(76px);
 
-$fp-main-row-gap: rem(40px);
+$main-md-p: 7.5vw;
+$main-md-p-max: rem(108px);
 
-$fp-main-outer-row-height: rem(20px);
+// Main - Front page
+$fp-main-p-min: rem(16px);
+$fp-main-p: 5vw;
+$fp-main-p-max: rem(38px);
 
-$fp-main-inner-row-min-height: rem(320px);
+// Main - Music - single
+$ms-main-py: rem(32px);
 
-$fp-main-inner-row-max-height-min: calc(100vh - (#{$fp-main-padding-min} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
-$fp-main-inner-row-max-height: calc(100vh - (#{$fp-main-padding} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
-$fp-main-inner-row-md-max-height: calc(100vh - (#{$fp-main-md-padding} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
-$fp-main-inner-row-max-height-max: calc(100vh - (#{$fp-main-padding-max} * 2) - (#{$fp-main-outer-row-height} * 2) - (#{$fp-main-row-gap} * 2));
+$ms-main-md-py: rem(50px);
 
-// Music - overview
-$mo-main-padding-min: rem(32px);
-$mo-main-padding: 10vw;
-$mo-main-md-padding: 7.5vw;
-$mo-main-padding-max: rem(108px);
 
-// Music - single
-$ms-main-padding-x-min: rem(32px);
-$ms-main-padding-y-min: $ms-main-padding-x-min;
-$ms-main-padding-x: 10vw;
-$ms-main-padding-y: $ms-main-padding-y-min;
-$ms-main-padding-md-x: 7.5vw;
-$ms-main-padding-md-y: rem(50px);
-$ms-main-padding-x-max: rem(108px);
-$ms-main-padding-y-max: $ms-main-padding-md-y;
+// Container
+$c-row-gap: rem(40px);
 
-$ms-main-padding-min: rem(32px);
-$ms-main-padding: $ms-main-padding-y $ms-main-padding-x;
-$ms-main-md-padding: $ms-main-padding-md-y $ms-main-padding-md-x;
-$ms-main-padding-max: $ms-main-padding-y-max $ms-main-padding-x-max;
+// Container - Front page
+$fp-c-row-outer-height: rem(24px);
+
+$fp-c-row-mid-height-min: var(--vh) - (#{$fp-main-p-min} * 2) - (#{$fp-c-row-outer-height} * 2) - (#{$c-row-gap} * 2);
+$fp-c-row-mid-height:     var(--vh) - (#{$fp-main-p} * 2) - (#{$fp-c-row-outer-height} * 2) - (#{$c-row-gap} * 2);
+$fp-c-row-mid-height-max: var(--vh) - (#{$fp-main-p-max} * 2) - (#{$fp-c-row-outer-height} * 2) - (#{$c-row-gap} * 2);
+
+$fp-c-row-mid-md-height:     var(--vh) - (#{$main-md-p} * 2) - (#{$fp-c-row-outer-height} * 2) - (#{$c-row-gap} * 2);
+$fp-c-row-mid-md-height-max: var(--vh) - (#{$main-md-p-max} * 2) - (#{$fp-c-row-outer-height} * 2) - (#{$c-row-gap} * 2);
+
+
+// Variable export to JavaScript
+:export {
+    fpCRowOuterHeight: $fp-c-row-outer-height;
+}

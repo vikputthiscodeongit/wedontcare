@@ -1,37 +1,9 @@
-Text align: center is standaard
+* We Don't Care logo frame 1 afbeelding compressen
 
-ul[class]: mb0 pl0 ls: none
+* "Small" image size vergroten naar 480x480
 
-grid-row-gap van landing grid weg
+* Image sizes nalopen
 
-container
- * center
- * md-between
-   > wordt box
-     * 2
-       * left-big
-     * 3
+* Draai sizing JavaScript na window load
 
-een type aspect-ratio box voor heel de website
-
-main padding opschonen
-
-scss
- - general
-   - layout
-   - type
- - components
-   - media
-   - form
-   - streaming
-   - show (? misschien te doen met een andere optimalisatie of utility class?)
- - pages
-   > include components
-   - shows
-     > page specific css, OF volgende punt
-   - page specific components (bijv. background (?))
-
-landing grid middle row beter fixen. zo min mogelijk js
-wpcf7.changeAttributes > wpcf7.giveId
-wpcf7.statusEl subfuncties afsplitsen
-tabindex hernoemen
+* Loading overlay

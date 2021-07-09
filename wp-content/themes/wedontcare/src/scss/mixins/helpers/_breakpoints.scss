@@ -1,4 +1,4 @@
-// Re-define Bootstrap's breakpoint-max function to make the respond-below & respond-between mixins more intuitive.
+// Re-define Bootstrap 4's breakpoint-max function to make the respond-below & respond-between mixins more intuitive.
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
     $max: map-get($breakpoints, $name);
 

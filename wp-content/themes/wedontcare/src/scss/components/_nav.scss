@@ -1,0 +1,13 @@
+.fp-nav {
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+        flex-grow: 1;
+        flex-basis: 50%;
+
+        &:last-child {
+            text-align: right;
+        }
+    }
+}
