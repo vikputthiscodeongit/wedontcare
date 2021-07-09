@@ -190,13 +190,6 @@
 
 
     //
-    // Enable ACF Options page
-    if (function_exists("acf_add_options_page")) {
-        acf_add_options_page();
-    }
-
-
-    //
     // Grant users with editor role access to Flamingo submissions
     function change_flamingo_user_rights($meta_caps) {
         $meta_caps = array_merge($meta_caps, array(
