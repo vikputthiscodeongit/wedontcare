@@ -77,12 +77,12 @@ main {
     flex-shrink: 0;
     width: 100%;
 
-    &--space-center {
+    &--content-center {
         justify-content: center;
+    }
 
-        @include respond-above(lg) {
-            justify-content: space-between;
-        }
+    &--content-between {
+        justify-content: space-between;
     }
 
     &--align-start {
@@ -91,6 +91,12 @@ main {
 
     &--align-center {
         align-items: center;
+    }
+
+    &--lg-content-between {
+        @include respond-above(lg) {
+            justify-content: space-between;
+        }
     }
 
     &--lg-align-center {
@@ -159,40 +165,43 @@ main {
 
 .box {
     flex-grow: 0;
-    flex-shrink: 0;
-    max-width: rem(360px);
-    margin-bottom: rem(50px);
 
-    .row--box-gap-compact > & {
-        margin-bottom: rem(40px);
-    }
+    &[class*="box--lg"] {
+        @include respond-below(lg) {
+            $margin:         rem(50px);
+            $margin-compact: rem(40px);
 
-    @include respond-above(md) {
-        max-width: rem(432px);
-    }
+            max-width: rem(360px);
+            margin-bottom: $margin;
 
-    @include respond-above(lg) {
-        flex-shrink: 1;
-        max-width: none;
-        margin-bottom: 0;
+            @include respond-above(md) {
+                max-width: rem(432px);
+            }
 
-        .row--box-gap-compact > & {
-            margin-bottom: 0;
+            &,
+            .row--box-gap-compact > & {
+                width: 100%;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .row--box-gap-compact > & {
+                margin-bottom: $margin-compact;
+            }
         }
     }
 
-    &:last-child,
-    .row--box-gap-compact > &:last-child {
-        margin-bottom: 0;
-    }
-
-    $selectors: "&--lg-",".row--box-gap-compact &--lg-";
+    $selectors: "&--", "&--lg-", ".row--box-gap-compact &--lg-";
 
     @each $selector in $selectors {
+        $margin:    rem(20px);
         $margin-lg: rem(40px);
         $margin-xl: rem(60px);
 
-        @if $selector != "&--lg-" {
+        @if $selector == ".row--box-gap-compact &--lg-" {
+            $margin:    rem(16px);
             $margin-lg: rem(25px);
             $margin-xl: rem(40px);
         }
@@ -202,6 +211,8 @@ main {
         @each $box-width in $box-widths {
             #{$selector}#{$box-width} {
                 $width: $box-width / 12 * 100%;
+
+                width: calc(#{$width} - #{$margin});
 
                 @include respond-above(lg) {
                     width: calc(#{$width} - #{$margin-lg});
