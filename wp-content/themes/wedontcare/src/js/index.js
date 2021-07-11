@@ -95,7 +95,7 @@ import stylesheet from "../scss/style.scss";
 
         let vh = document.documentElement.clientHeight;
 
-        if (document.body.classList.contains("cover-fullvh--high") && vh < 720) {
+        if (document.body.classList.contains("cover-fullvh--fixed-min") && vh < 720) {
             if (!aboveBreakpoint("md") && vh < 568) {
                 vh = 568;
             } else if (aboveBreakpoint("md") && vh < 720) {

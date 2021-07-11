@@ -169,7 +169,7 @@
         }
 
         if (is_front_page()) {
-            array_push($classes, "cover-fullvh--high", "covers-fullvh");
+            array_push($classes, "cover-fullvh--fixed-min", "covers-fullvh");
         }
 
         if (

@@ -71,7 +71,19 @@
 
                                         $base_dir = trailingslashit(THEME_DIR_PATH);
                                         $dir      = "dist/images/static/streaming/";
+
+
+
+                                        //
+                                        // Waarom doe ik dit?
+                                        //
                                         $pattern  = str_replace("_", "-", $service);
+                                        //
+                                        //
+                                        //
+
+
+
                                         $logo_versions = glob($base_dir . $dir . $pattern . "*");
                                         // var_dump($logo_versions);
 
