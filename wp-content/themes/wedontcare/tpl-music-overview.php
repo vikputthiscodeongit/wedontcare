@@ -31,7 +31,7 @@
                         if (!empty($id))
                             $classes .= " box--" . $id;
 
-                        $artwork = get_the_post_thumbnail($post->ID, "medium");
+                        $artwork = get_the_post_thumbnail($post->ID, "small");
                         $link = get_permalink();
                         // var_dump($classes, $id, $artwork, $link);
                         ?>

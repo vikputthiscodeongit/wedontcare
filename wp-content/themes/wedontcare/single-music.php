@@ -8,7 +8,7 @@
     <div class="row row--space-center row--align-start row--box-gap-compact">
         <div class="box box--lg-7 ms-artwork">
             <?php
-                $artwork = get_the_post_thumbnail($post->ID, "full", array("loading" => false));
+                $artwork = get_the_post_thumbnail($post->ID, "medium", array("loading" => false));
                 // var_dump($artwork);
             ?>
             <div class="media media--underlay" style="--aspect-ratio: 1/1;">
@@ -20,7 +20,7 @@
             <div class="streaming">
                 <?php
                     $logo = $attrs["logo"];
-                    $logo = wp_get_attachment_image($logo["ID"], "small", false, array("class" => "streaming__logo", "loading" => false));
+                    $logo = wp_get_attachment_image($logo["ID"], "extra_small", false, array("class" => "streaming__logo", "loading" => false));
                     // var_dump($logo);
 
                     if (!empty($logo)) {

@@ -92,7 +92,8 @@
     //
     // Add extra image sizes
     function add_image_sizes() {
-        add_image_size("small", 360, 360);
+        add_image_size("extra_small", 360, 360);
+        add_image_size("small", 480, 480);
     }
     add_action("after_setup_theme", "add_image_sizes");
 

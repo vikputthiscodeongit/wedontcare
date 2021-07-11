@@ -26,7 +26,7 @@
                 if (!empty($content)) {
                     $video = $content["video"];
 
-                    $video_poster = $video["poster"]["sizes"]["medium"];
+                    $video_poster = $video["poster"]["url"];
                     $video_sources = $video["source"];
 
                     if (count($video_sources) > 0) {
