@@ -41,10 +41,13 @@ import stylesheet from "../scss/style.scss";
         return regEx.test(address);
     }
 
+    const html = document.documentElement,
+          body = document.body;
+
 
     // Event handlers
     document.addEventListener("DOMContentLoaded", function() {
-        document.documentElement.classList.replace("no-js", "js");
+        html.classList.replace("no-js", "js");
 
         inputDeviceDetector();
 
@@ -64,12 +67,12 @@ import stylesheet from "../scss/style.scss";
     function inputDeviceDetector() {
         console.log("In inputDeviceDetector().");
 
-        document.body.addEventListener("mousedown", function() {
-            document.body.classList.add("using-mouse");
+        body.addEventListener("mousedown", function() {
+            body.classList.add("using-mouse");
         });
 
-        document.body.addEventListener("keydown", function() {
-            document.body.classList.remove("using-mouse");
+        body.addEventListener("keydown", function() {
+            body.classList.remove("using-mouse");
         });
     }
 
@@ -78,7 +81,7 @@ import stylesheet from "../scss/style.scss";
     let main = {};
 
     main.init = function() {
-        if (!document.body.classList.contains("cover-fullvh"))
+        if (!body.classList.contains("cover-fullvh"))
             return;
 
         main.heightFixer();
@@ -93,21 +96,20 @@ import stylesheet from "../scss/style.scss";
     main.heightFixer = function() {
         console.log("In main.heightFixer().");
 
-        let vh = document.documentElement.clientHeight;
+        let vh = html.clientHeight;
 
-        if (document.body.classList.contains("cover-fullvh--fixed-min") && vh < 720) {
             if (!aboveBreakpoint("md") && vh < 568) {
                 vh = 568;
             } else if (aboveBreakpoint("md") && vh < 720) {
                 vh = 720;
             }
-        } else if (document.body.classList.contains("cover-fullvh--dynamic")) {
-            document.body.classList.remove("covers-fullvh");
+        } else if (body.classList.contains("cover-fullvh--dynamic")) {
+            body.classList.remove("covers-fullvh");
 
-            const bh = document.body.clientHeight;
+            const bh = body.clientHeight;
 
             if (vh > bh) {
-                document.body.classList.add("covers-fullvh");
+                body.classList.add("covers-fullvh");
             }
         }
 
@@ -182,7 +184,7 @@ import stylesheet from "../scss/style.scss";
 
         wpcf7El.classList.add("form");
 
-        if (document.body.classList.contains("page-template-front-page")) {
+        if (body.classList.contains("page-template-front-page")) {
             if (wpcf7El.closest(".fp-content")) {
                 wpcf7El.classList.add("form--width-small");
                 wpcf7El.setAttribute("id", "form-mailing");
@@ -301,7 +303,7 @@ import stylesheet from "../scss/style.scss";
     fpContent.sizeFixer = function() {
         console.log("In fpContent.sizeFixer().");
 
-        const bodyFontSizeUl = cssUnitToNo(cssValue(document.body, "font-size"));
+        const bodyFontSizeUl = cssUnitToNo(cssValue(body, "font-size"));
         const fpCRowOuterHeightMp = cssUnitToNo(stylesheet.fpCRowOuterHeight);
 
         const fpCRowOuterHeight = bodyFontSizeUl * fpCRowOuterHeightMp;
