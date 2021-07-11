@@ -13,10 +13,8 @@
     }
 
     &__top {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         padding: rem(24px) rem(32px);
+        text-align: center;
 
         @include respond-above(md) {
             padding: rem(32px) rem(40px);

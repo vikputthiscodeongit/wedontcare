@@ -1,9 +1,21 @@
-* We Don't Care logo frame 1 afbeelding compressen
+v We Don't Care logo frame 1 afbeelding compressen
+  > Live: re-upload
 
-* "Small" image size vergroten naar 480x480
+v "Small" image size vergroten naar 480x480
+  > Live:
+    * Medium size -> 800px
+    * Regenerate thumbnails
 
-* Image sizes nalopen
+v Image sizes nalopen
 
-* Draai sizing JavaScript na window load
+v tpl-music-overview.php container buiten de loop halen
+
+* tpl-social.php afmaken
+
+* Draai sizing JavaScript na window load -> in ieder geval main & video?
 
 * Loading overlay
+
+
+Test:
+* Media met tekstuele fallback

@@ -98,10 +98,13 @@ import stylesheet from "../scss/style.scss";
 
         let vh = html.clientHeight;
 
+        const vhFixedMinTreshold = 640;
+
+        if (body.classList.contains("cover-fullvh--fixed-min") && vh < vhFixedMinTreshold) {
             if (!aboveBreakpoint("md") && vh < 568) {
                 vh = 568;
-            } else if (aboveBreakpoint("md") && vh < 720) {
-                vh = 720;
+            } else if (aboveBreakpoint("md") && vh < vhFixedMinTreshold) {
+                vh = vhFixedMinTreshold;
             }
         } else if (body.classList.contains("cover-fullvh--dynamic")) {
             body.classList.remove("covers-fullvh");
@@ -313,7 +316,9 @@ import stylesheet from "../scss/style.scss";
         const mediaTargetHeight = fpContentElHeight - (fpCRowOuterHeight * 2);
 
         if (mediaWidth > mediaTargetHeight) {
-            fpContent.el.style.gridTemplateRows = `${fpCRowOuterHeight}px ${mediaTargetHeight}px ${fpCRowOuterHeight}px`;
+            const rowHeights = `${fpCRowOuterHeight}px ${mediaTargetHeight}px ${fpCRowOuterHeight}px`;
+
+            fpContent.el.style.gridTemplateRows = rowHeights;
         } else if (fpContent.el.style.gridTemplateRows !== "") {
             fpContent.el.style.gridTemplateRows = "";
         }

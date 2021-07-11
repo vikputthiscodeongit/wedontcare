@@ -23,13 +23,12 @@
                     $entity = get_field("entity");
                     // var_dump($entity);
 
-                    $classes = "box box--lg-4";
+                    $classes = "box box--4";
 
                     $id = $entity["id"];
 
                     if (!empty($id))
                         $classes .= " box--" . $id;
-
 
                     // Social
                     $social = $entity["social"];

@@ -69,32 +69,20 @@
                                         // Logo
                                         $logo = false;
 
-                                        $base_dir = trailingslashit(THEME_DIR_PATH);
-                                        $dir      = "dist/images/static/streaming/";
+                                        $base_dir  = trailingslashit(THEME_DIR_PATH);
+                                        $dir       = "dist/images/static/streaming/";
+                                        $file_name = str_replace("_", "-", $service);
+                                        $files     = glob($base_dir . $dir . $file_name . "*");
+                                        // var_dump($files);
 
-
-
-                                        //
-                                        // Waarom doe ik dit?
-                                        //
-                                        $pattern  = str_replace("_", "-", $service);
-                                        //
-                                        //
-                                        //
-
-
-
-                                        $logo_versions = glob($base_dir . $dir . $pattern . "*");
-                                        // var_dump($logo_versions);
-
-                                        if (count($logo_versions) > 0) {
-                                            if (count($logo_versions) === 1) {
-                                                $logo = get_theme_file_uri($dir . basename($logo_versions[0]));
+                                        if (count($files) > 0) {
+                                            if (count($files) === 1) {
+                                                $logo = get_theme_file_uri($dir . basename($files[0]));
                                             } else {
                                                 $colors = ["color", "black", "white"];
 
                                                 foreach ($colors as $color) {
-                                                    foreach ($logo_versions as $logo_version) {
+                                                    foreach ($files as $logo_version) {
                                                         if ($logo)
                                                             break;
 
