@@ -17,6 +17,11 @@
         height: 100%;
     }
 
+    > video,
+    > img {
+        object-fit: contain;
+    }
+
     > img {
         height: auto;
     }
