@@ -5,7 +5,7 @@
 ?>
 
 <div class="container container--align-center">
-    <div class="row row--content-between">
+    <div class="row row--space-center row--lg-align-center">
         <?php
             $query_args = array(
                 "post_type" => "entity",

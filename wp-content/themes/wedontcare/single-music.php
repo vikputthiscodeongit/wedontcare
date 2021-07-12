@@ -5,7 +5,7 @@
 ?>
 
 <div class="container">
-    <div class="row row--content-center row--lg-content-between row--align-start row--box-gap-compact">
+    <div class="row row--space-center row--align-start row--box-gap-compact">
         <div class="box box--lg-7 ms-artwork">
             <?php
                 $artwork = get_the_post_thumbnail($post->ID, "medium", array("loading" => false));
