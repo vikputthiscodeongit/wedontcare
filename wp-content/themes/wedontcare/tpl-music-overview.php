@@ -37,7 +37,9 @@
                         <div class="media media--filter media--filter-grayscale" style="--aspect-ratio: 1 / 1">
                             <?php echo $artwork; ?>
 
-                            <a class="stretched-link" href="<?php echo $link; ?>" target="_self"></a>
+                            <a class="stretched-link" href="<?php echo $link; ?>" target="_self">
+                                <span class="sr-only"><?php the_title(); ?></span>
+                            </a>
                         </div>
                     </div>
                     <?php
