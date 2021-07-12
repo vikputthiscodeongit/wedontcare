@@ -10,7 +10,7 @@ v Image sizes nalopen
 
 v tpl-music-overview.php container buiten de loop halen
 
-* tpl-social.php afmaken
+v tpl-social.php afmaken
 
 * Draai sizing JavaScript na window load -> in ieder geval main & video?
 

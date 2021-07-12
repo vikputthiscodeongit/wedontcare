@@ -38,6 +38,10 @@ video {
         width: 100%;
     }
 
+    .social > & {
+        width: 100%;
+    }
+
     > span:not([class]):only-child {
         display: flex;
         justify-content: center;
