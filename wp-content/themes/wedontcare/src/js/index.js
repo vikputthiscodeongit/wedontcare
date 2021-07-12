@@ -86,6 +86,8 @@ import stylesheet from "../scss/style.scss";
     let main = {};
 
     main.init = function() {
+        console.log("In main.init().");
+
         if (!body.classList.contains("cover-fullvh"))
             return;
 
@@ -143,6 +145,8 @@ import stylesheet from "../scss/style.scss";
     let video = {};
 
     video.init = function() {
+        console.log("In video.init().");
+
         if (video.els.length === 0)
             return;
 
@@ -168,6 +172,8 @@ import stylesheet from "../scss/style.scss";
     let wpcf7 = {};
 
     wpcf7.init = function() {
+        console.log("In wpcf7.init().");
+
         if (wpcf7.els.length === 0)
             return;
 
@@ -304,6 +310,8 @@ import stylesheet from "../scss/style.scss";
     let fpContent = {};
 
     fpContent.init = function() {
+        console.log("In fpContent.init().");
+
         if (!fpContent.mediaEl)
             return;
 
@@ -354,6 +362,8 @@ import stylesheet from "../scss/style.scss";
     let reversedRow = {};
 
     reversedRow.init = function() {
+        console.log("In reversedRow.init().");
+
         if (reversedRow.els.length === 0)
             return;
 

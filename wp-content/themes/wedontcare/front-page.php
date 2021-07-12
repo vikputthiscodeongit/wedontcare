@@ -54,7 +54,7 @@
                                 }
                             ?>
 
-                            Your browser sucks and does not support awesomeness.
+                            Media should be played here, but isn't available because your web browser sucks.
                         </video>
 
                         <span class="sr-only">

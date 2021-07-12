@@ -5,6 +5,7 @@
 ?>
 
 <div class="container container--align-center">
+    <div class="row row--space-center row--lg-align-center row--lg-direction-reverse">
         <?php
             $query_args = array(
                 "post_type" => "music",
@@ -14,7 +15,6 @@
 
             $the_query = new WP_Query($query_args);
 
-            <div class="row row--space-center row--lg-align-center row--lg-direction-reverse">
             if ($the_query->have_posts()) {
                 while ($the_query->have_posts()) {
                     $the_query->the_post();

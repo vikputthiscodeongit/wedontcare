@@ -12,10 +12,18 @@ v tpl-music-overview.php container buiten de loop halen
 
 v tpl-social.php afmaken
 
-* Draai sizing JavaScript na window load -> in ieder geval main & video?
+v Draai sizing JavaScript na window load -> in ieder geval main & video?
 
-* Loading overlay
+v console.log voor init() functies
+
+
+x <h1> voor elke pagina
+
+x single-music.php: .service__link mag geen <div> bevatten
+
 
 
 Test:
+* Media lazy loading
+
 * Media met tekstuele fallback

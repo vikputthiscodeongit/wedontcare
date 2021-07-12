@@ -49,22 +49,22 @@
                                         // var_dump($url);
 
                                         // Name
-                                        $name_pretty = str_replace("_", " ", $service);
+                                        $name = str_replace("_", " ", $service);
 
-                                        switch ($name_pretty) {
+                                        switch ($name) {
                                             case "soundcloud":
-                                                $name_pretty = "SoundCloud";
+                                                $name = "SoundCloud";
 
                                                 break;
                                             case "youtube":
-                                                $name_pretty = "YouTube";
+                                                $name = "YouTube";
 
                                                 break;
                                             default:
-                                                $name_pretty = ucwords($name_pretty);
+                                                $name = ucwords($name);
                                         }
 
-                                        // var_dump($name_pretty);
+                                        // var_dump($name);
 
                                         // Logo
                                         $logo = false;
@@ -101,13 +101,13 @@
                                                     if ($logo) {
                                                         ?>
                                                         <div class="service__logo">
-                                                            <img src="<?php echo $logo; ?>" alt="<?php echo $name_pretty; ?> logo">
+                                                            <img src="<?php echo $logo; ?>" alt="<?php echo $name; ?> logo">
                                                         </div>
                                                         <?php
                                                     } else {
                                                         ?>
                                                         <div class="service__name">
-                                                            <span><?php echo $name_pretty; ?></span>
+                                                            <span><?php echo $name; ?></span>
                                                         </div>
                                                         <?php
                                                     }
