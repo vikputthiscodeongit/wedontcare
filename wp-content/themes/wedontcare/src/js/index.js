@@ -4,6 +4,11 @@ import stylesheet from "../scss/style.scss";
 
 (function() {
     // Helpers
+    // Check if stylesheet has been loaded
+    function cssLoaded() {
+        return cssValue(body, "display") === "flex";
+    }
+
     // Get a CSS property value
     function cssValue(el, prop) {
         const styles = window.getComputedStyle(el),
@@ -83,6 +88,16 @@ import stylesheet from "../scss/style.scss";
     main.init = function() {
         if (!body.classList.contains("cover-fullvh"))
             return;
+
+        if (!cssLoaded()) {
+            const timeout = 1000;
+
+            console.log(`CSS hasn't been loaded yet. Running function in ${timeout} ms!`);
+
+            setTimeout(main.init, timeout);
+
+            return;
+        }
 
         main.heightFixer();
 
@@ -291,6 +306,16 @@ import stylesheet from "../scss/style.scss";
     fpContent.init = function() {
         if (!fpContent.mediaEl)
             return;
+
+        if (!cssLoaded()) {
+            const timeout = 1000;
+
+            console.log(`CSS hasn't been loaded yet. Running function in ${timeout} ms!`);
+
+            setTimeout(fpContent.init, timeout);
+
+            return;
+        }
 
         fpContent.sizeFixer();
 
